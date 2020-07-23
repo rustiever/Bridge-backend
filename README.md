@@ -4,7 +4,7 @@ Bridge-web is community Web App which enables the students, faculties understand
 
 ## Installation
 
-Not yet built 
+after cloning this repo issue a command ```npm install``` in functions folder
 
 ## Usage
 
@@ -14,6 +14,7 @@ Not yet built
 ## Roadmap
 - instagram interface
 - forms like google forms, polls,
+- use flutter for frontend
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
