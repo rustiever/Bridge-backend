@@ -1,4 +1,4 @@
 node_modules/
 
 #firebase service file, should keep private
-app.js
+config.js
