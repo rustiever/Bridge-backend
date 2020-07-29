@@ -1,4 +1,4 @@
-# Bridge-web
+# Bridge-Backend
 
 Bridge-web web version of community app which acts as a bridge between students faculties college management etc.
 
