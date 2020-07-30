@@ -1,5 +1,6 @@
 //const { error } = require("firebase-functions/lib/logger");
 const jwt = require('jsonwebtoken');
+
 module.exports.requestHandler = async(req, res, next) =>{
     req.alreadyLogin = true;
     if(!req.body.token){
@@ -7,7 +8,7 @@ module.exports.requestHandler = async(req, res, next) =>{
         return next(err);
     }
     if(req.body.usn){
-        if(!req.body.name || !req.body.email || !req.body.photoUrl ||!req.body.uid){
+        if(!req.body.name || !req.body.email || !req.body.photoUrl ||!req.body.uid  || !req.body.joined){
             let err = new Error('Something went wrong!!! Data insufficient');
             return next(err);
         }
@@ -40,6 +41,8 @@ function UserException(message) {
     this.message = message;
     this.name = 'UserException';
 }
+
+
 module.exports.usnValidation = function(usn){
     
         let l = usn.length;
