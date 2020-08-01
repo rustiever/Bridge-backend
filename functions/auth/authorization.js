@@ -1,15 +1,16 @@
 const jwt = require('jsonwebtoken');
-const { secret } = require('./config');
+const  { AuthSecret } = require('./config');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
 const db = require('../app');
 
 module.exports.checkToken = async (req, res, next) => {
-    if(secret===null){
-    let err = new Error('Invalid operation');
-    return next(err);
+    if(!AuthSecret()){
+        let err = new Error('Invalid operation');
+        return next(err);
     }
+    req.secret = AuthSecret();
     const header = req.headers['authorization'];
     if(typeof header !== 'undefined')
     {
@@ -22,36 +23,26 @@ module.exports.checkToken = async (req, res, next) => {
     return next(err);
 };
 
-module.exports.authorizeToken = (req, res, next) => {
-    
-    if(typeof req.token === 'undefined'){
-        let err = new Error('Error in headers');
-        return next(err);
-    }
-    if(secret===null){
+module.exports.authorizeToken = async (req, res, next) => {
+    if(!req.secret){
         let err = new Error('Invalid operation ;Login first');
         return next(err);
     }
-    (async ()=>{
-        await jwt.verify(req.token,secret,(err,authorizedata) =>
-        {
-        if(err){
-            return next(err);
+    try{
+        const token = jwt.verify(req.token, req.secret);
+        if(!token)
+            return next(new Error('No user found'));
+        
+        const uid = token.id;
+        req.uid = uid;
+        const docRef = await db.collection('users').doc(uid);
+        const docData = (await docRef.get()).data();
+        const userToken = docData.token;
+        if(userToken.includes(req.token)){
+            return next();        
         }
-        var uid = authorizedata.id;
-        try{
-        const doc =async()=>await (await db.collection('users').doc(uid).get()).data();
-        const data = doc.token.includes(req.body.token);
-        if(data){
-            return next();
-        }
-        }catch(myerror){
-            return next(myerror);
-        }
-        return next(new Error('Authentication Failed'));
-        });
-    })();
-    
-    let er = new Error('Something went wrong');
-    return next(er);
+        return next(new Error('not valid user'));   
+    }catch(err){
+        return next(err);
+    }
 };

@@ -15,7 +15,7 @@ function boolCheck(str){
     if(str==="true")return true;
     else if(str==="false")return false;
     else return false;
-  }
+}
 
 router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, next) => {
     
@@ -26,9 +26,9 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
         const docRef = await db.collection('users').doc(req.uid);
         if(docRef){
         var jsonwebtoken = await jwt.sign({id:req.uid},req.body.token);
-        await docRef.update({token : jsonwebtoken});
+        await docRef.update({token : [jsonwebtoken]});
         let result = await docRef.get();
-        secret.secret = req.body.token;
+        secret.secret(req.body.token);
         //console.log(secret.secret);
         return res.status(200).send(result.data());
         }
@@ -39,7 +39,8 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
         const email = req.body.email;
         const photo = req.body.photoUrl;
         const name = req.body.name;
-        const joined = boolCheck(String(req.body.joined).toLowerCase());
+        //const joined = boolCheck(String(req.body.joined).toLowerCase());
+        const joined = req.body.joined;
         const docRef =  db.collection('users').doc(uid);
         await docRef.set({
               branch: checked.branchName, 
@@ -51,6 +52,7 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
               joined:joined
         });
         let jsonwebtoken = await jwt.sign({id:req.uid},req.body.token);
+        secret.secret(req.body.token);
         await docRef.update({token : [jsonwebtoken]});
         let result = await docRef.get();
         //console.log(result.data());

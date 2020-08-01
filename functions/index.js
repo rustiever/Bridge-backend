@@ -7,6 +7,7 @@ const cors = require('cors');
 const db = require('./app');
 const middleware = require('./middleware');
 const authRouter = require('./routes/login');
+const signoutRouter = require('./routes/logout');
 
 const app = express();
 
@@ -14,12 +15,11 @@ app.use(cors({ origin: true }));
 app.use(parser.json());
 
 app.use('/api/auth',authRouter);
+app.use('/api/logout', signoutRouter);
 
 app.post('/api/posts',middleware.requestHandler, (req, res,next) => {
     (async () => {
         try {
-            const checked = usnValidation(req.body.usn.toUpperCase());
-
             await db.collection('posts').add({
                 caption: req.body.caption,
                 imgUrl: req.body.imgUrl,
