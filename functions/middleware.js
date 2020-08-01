@@ -1,5 +1,6 @@
 //const { error } = require("firebase-functions/lib/logger");
 const jwt = require('jsonwebtoken');
+
 module.exports.requestHandler = async(req, res, next) =>{
     req.alreadyLogin = true;
     if(!req.body.token){
@@ -7,7 +8,7 @@ module.exports.requestHandler = async(req, res, next) =>{
         return next(err);
     }
     if(req.body.usn){
-        if(!req.body.name || !req.body.email || !req.body.photoUrl ||!req.body.uid){
+        if(!req.body.name || !req.body.email || !req.body.photoUrl ||!req.body.uid  || !req.body.joined){
             let err = new Error('Something went wrong!!! Data insufficient');
             return next(err);
         }
@@ -40,50 +41,65 @@ function UserException(message) {
     this.message = message;
     this.name = 'UserException';
 }
+
+
 module.exports.usnValidation = function(usn){
     
-        let l = usn.length;
-        if(l === 10)
-        {
-          let setFlag = false;
-          var branchName ;
-          var branch = usn.substr(5,2);
-          var year ="20"+ usn.substr(3,2);
-          if(!Number.isNaN(parseInt(branch,10)) || branch === parseInt(branch,10)||year !== Number.parseInt(year,10).toString()){
-            throw new UserException('Invalid USN');
-          }
+  let l = usn.length;
+  if(l === 10)
+  {
+    let setFlag = false;
+    var branchName ;
+    var branch = usn.substr(5,2);
+    var year ="20"+ usn.substr(3,2);
+    if(!Number.isNaN(parseInt(branch,10)) || branch === parseInt(branch,10)||year !== Number.parseInt(year,10).toString())
+    {
+      throw new UserException('Invalid USN');
+    }
       
-          switch (branch) {
-            case 'CS':branchName = "Computer Science and Engineering".toUpperCase();
-                      setFlag = true;
-                      break;
+    switch (branch)
+    {
+      case 'CS':branchName = "Computer Science and Engineering".toUpperCase();
+                setFlag = true;
+                break;
       
-            case 'IS':branchName = "Information Science and Engineering".toUpperCase();
-                      setFlag = true;
-                      break;
+      case 'IS':branchName = "Information Science and Engineering".toUpperCase();
+                setFlag = true;
+                break;
             
-            case 'EC':branchName = "Electronics and Communication Engineering".toUpperCase();
-                      setFlag = true;
-                      break;
+      case 'EC':branchName = "Electronics and Communication Engineering".toUpperCase();
+                setFlag = true;
+                break;
       
-            case 'ME':branchName = "Mechanical Engineering".toUpperCase();
-                      setFlag = true;
-                      break;
+      case 'ME':branchName = "Mechanical Engineering".toUpperCase();
+                setFlag = true;
+                break;
+                  
+      case 'AE':branchName = "Aeronautical Engineering".toUpperCase();
+                setFlag = true;
+                break;
+
+      case 'CV':branchName = "Civil Engineering".toUpperCase();
+                setFlag = true;
+                break;
+
+      case 'MT':branchName = "Mechatronics Engineering".toUpperCase();
+                setFlag = true;
+                break;
       
-            default: break;
-          }
+      default: break;
+    }
       
-          if(!setFlag)
-            {
-              throw new UserException('Branch Name Invalid');
-            }
-            var result = {
-              usn : usn,
-              branchName : branchName,
-              year : year
-            }
-            return result;
-        }
-        throw new UserException('Invalid Operation');
-   
+    if(!setFlag)
+    {
+      throw new UserException('Branch Name Invalid');
+    }
+    var result = {
+      usn : usn,
+      branchName : branchName,
+      year : year
+    }
+    return result;
+  }
+  throw new UserException('Invalid Credentials'); 
 };
