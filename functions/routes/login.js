@@ -11,11 +11,11 @@ const router = express.Router();
 router.use(parser.json());
 
 
-function boolCheck(str){
-    if(str==="true")return true;
-    else if(str==="false")return false;
-    else return false;
-}
+// function boolCheck(str){
+//     if(str==="true")return true;
+//     else if(str==="false")return false;
+//     else return false;
+// }
 
 router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, next) => {
     
@@ -41,6 +41,7 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
         const name = req.body.name;
         //const joined = boolCheck(String(req.body.joined).toLowerCase());
         const joined = req.body.joined;
+        
         const docRef =  db.collection('users').doc(uid);
         await docRef.set({
               branch: checked.branchName, 
@@ -56,7 +57,7 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
         await docRef.update({token : [jsonwebtoken]});
         let result = await docRef.get();
         //console.log(result.data());
-        return res.status(200).send(result.data());
+        return res.status(201).send(result.data());
     }
     }
     catch(err){
