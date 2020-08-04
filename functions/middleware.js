@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 module.exports.requestHandler = async(req, res, next) =>{
     req.alreadyLogin = true;
     if(!req.body.token){
-        let err = new Error('Something went wrong!!! You are not a valid User');
+        let err = new Error('Something went wrong!!! The required data not given');
         return next(err);
     }
     if(req.body.usn){
@@ -25,7 +25,7 @@ module.exports.requestUser = async (req, res, next) => {
         req.uid = user.user_id;
         if(!req.alreadyLogin){
             if(user.user_id !== req.body.uid || user.email !== req.body.email || user.name !== req.body.name || user.picture !== req.body.photoUrl){
-            let err = new Error('Something went wrong!!! Data wrong');
+            let err = new Error('The given Data Invalid for the operation');
             return next(err)
             
             }
@@ -39,7 +39,7 @@ module.exports.requestUser = async (req, res, next) => {
 
 function UserException(message) {
     this.message = message;
-    this.name = 'UserException';
+    this.name = 'User-Data Exception';
 }
 
 
