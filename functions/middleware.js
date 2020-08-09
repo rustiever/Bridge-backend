@@ -5,11 +5,13 @@ module.exports.requestHandler = async(req, res, next) =>{
     req.alreadyLogin = true;
     if(!req.body.token){
         let err = new Error('Something went wrong!!! The required data not given');
+        err.status = 400;
         return next(err);
     }
     if(req.body.usn){
         if(!req.body.name || !req.body.email || !req.body.photoUrl ||!req.body.uid  || !req.body.joined){
-            let err = new Error('Something went wrong!!! Data insufficient');
+            const err = new Error('Something went wrong!!! Data insufficient');
+            err.status = 400;
             return next(err);
         }
         req.alreadyLogin = false;
@@ -26,6 +28,7 @@ module.exports.requestUser = async (req, res, next) => {
         if(!req.alreadyLogin){
             if(user.user_id !== req.body.uid || user.email !== req.body.email || user.name !== req.body.name || user.picture !== req.body.photoUrl){
             let err = new Error('The given Data Invalid for the operation');
+            err.status = 400;
             return next(err)
             
             }
@@ -38,10 +41,9 @@ module.exports.requestUser = async (req, res, next) => {
 };
 
 function UserException(message) {
-    this.message = message;
-    this.name = 'User-Data Exception';
+  this.message = message;
+  this.name = 'User-Exception';
 }
-
 
 module.exports.usnValidation = function(usn){
     
@@ -54,7 +56,8 @@ module.exports.usnValidation = function(usn){
     var year ="20"+ usn.substr(3,2);
     if(!Number.isNaN(parseInt(branch,10)) || branch === parseInt(branch,10)||year !== Number.parseInt(year,10).toString())
     {
-      throw new UserException('Invalid USN');
+      return new UserException('Invalid USN');
+ 
     }
       
     switch (branch)
@@ -92,7 +95,7 @@ module.exports.usnValidation = function(usn){
       
     if(!setFlag)
     {
-      throw new UserException('Branch Name Invalid');
+      return new UserException('Branch Name Invalid');
     }
     var result = {
       usn : usn,
@@ -101,5 +104,5 @@ module.exports.usnValidation = function(usn){
     }
     return result;
   }
-  throw new UserException('Invalid Credentials'); 
+  return new UserException('Invalid Credentials'); 
 };
