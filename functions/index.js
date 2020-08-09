@@ -9,11 +9,19 @@ const db = require("./app");
 const middleware = require("./middleware");
 const authRouter = require("./routes/login");
 const signoutRouter = require("./routes/logout");
+const facultyRouter = require('./faculty/routes/login');
 
 const app = express();
+const faculty = express();
 
 app.use(cors({ origin: true }));
 app.use(parser.json());
+
+faculty.use(cors({ origin: true }));
+faculty.use(parser.json());
+
+//Faculties Api call section
+faculty.use('/api', facultyRouter);
 
 app.use("/api/auth", authRouter);
 app.use("/api/logout", signoutRouter);
@@ -40,10 +48,5 @@ app.post("/api/posts", middleware.requestHandler, (req, res) => {
   })();
 });
 
-const converter=csv()
-.fromFile('../dummyAssets/MOCK_DATA.csv')
-.then((json)=>{
-    console.log(json);
-})
-console.log(converter);
 exports.app = functions.https.onRequest(app);
+exports.faculty = functions.https.onRequest(faculty);
