@@ -1,6 +1,5 @@
 const express = require('express');
 const parser = require('body-parser');
-const jwt = require('jsonwebtoken');
 const firebase = require('firebase');
 
 const db = require('../../app');
