@@ -2,6 +2,3 @@ node_modules/
 
 #firebase service file, should keep private
 auth/config.js
-
-#config file of faculties
-faculty/auth/config.js
