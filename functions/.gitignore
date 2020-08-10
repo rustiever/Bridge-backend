@@ -1,4 +1,8 @@
 node_modules/
 
+faculty/auth/facconfig.js
+
+student/auth/stuconfig.js
+
 #firebase service file, should keep private
 auth/config.js

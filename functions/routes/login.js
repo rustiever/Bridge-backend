@@ -35,6 +35,9 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
         return res.status(400).send("Invalid token");
     }else{
         var checked = middleware.usnValidation((req.body.usn).toUpperCase());
+        if(checked.name === 'User-Exception'){
+            res.status(400).send(checked.message);
+        }
         const uid = req.uid;
         const email = req.body.email;
         const photo = req.body.photoUrl;
