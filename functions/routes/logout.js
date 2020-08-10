@@ -12,7 +12,7 @@ signout.use(parser.json());
 signout.get('/' , authorize.checkToken , authorize.authorizeToken, (req, res, next) =>{
     (async ()=>{
         try {
-            const docRef = await db.collection('users').doc(req.uid);
+            const docRef = db.collection('users').doc(req.uid);
             await docRef.update({
                 "token" : firebase.firestore.FieldValue.arrayRemove(req.token)
             });
