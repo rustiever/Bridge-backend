@@ -9,10 +9,13 @@ const db = require("./app");
 const middleware = require("./middleware");
 const authRouter = require("./routes/login");
 const signoutRouter = require("./routes/logout");
-const facultyRouter = require('./faculty/routes/login');
+
+const facultyLoginRouter = require('./faculty/routes/login');
+const facultyLogoutRouter = require('./faculty/routes/logout');
 
 const app = express();
 const faculty = express();
+const student = express();
 
 app.use(cors({ origin: true }));
 app.use(parser.json());
@@ -20,8 +23,12 @@ app.use(parser.json());
 faculty.use(cors({ origin: true }));
 faculty.use(parser.json());
 
+student.use(cors({ origin: true }));
+student.use(parser.json());
+
 //Faculties Api call section
-faculty.use('/api', facultyRouter);
+faculty.use('/api/login', facultyLoginRouter);
+faculty.use('/api/logout', facultyLogoutRouter);
 
 app.use("/api/auth", authRouter);
 app.use("/api/logout", signoutRouter);
@@ -48,5 +55,6 @@ app.post("/api/posts", middleware.requestHandler, (req, res) => {
   })();
 });
 
-exports.app = functions.https.onRequest(app);
+//exports.app = functions.https.onRequest(app);
 exports.faculty = functions.https.onRequest(faculty);
+exports.student = functions.https.onRequest(student);
