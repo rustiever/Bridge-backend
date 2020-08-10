@@ -8,10 +8,9 @@ const middleware = require('../auth/middleware');
 const secret = require('../auth/config');
 
 const facultyRouter = express.Router();
-
 facultyRouter.use(parser.json());
 
-facultyRouter.post('/login',middleware.requestHandler, middleware.requestUser, async(req, res, next) => {
+facultyRouter.post('/',middleware.requestHandler, middleware.requestUser, async(req, res, next) => {
     try {
         if(!req.alreadySignin){
             const uid = req.uid;
