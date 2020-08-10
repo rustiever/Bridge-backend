@@ -5,7 +5,7 @@ const firebase = require('firebase');
 
 const db = require('../../app');
 const middleware = require('../auth/middleware');
-const secret = require('../auth/config');
+const secret = require('../auth/facconfig');
 
 const facultyRouter = express.Router();
 facultyRouter.use(parser.json());

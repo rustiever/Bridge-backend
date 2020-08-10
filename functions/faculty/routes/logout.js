@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const firebase = require('firebase');
 
 const db = require('../../app');
-const secret = require('../auth/config');
+const secret = require('../auth/facconfig');
 
 const facultyRouter = express.Router();
 facultyRouter.use(parser.json());
