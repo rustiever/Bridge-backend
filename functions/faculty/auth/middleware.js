@@ -50,7 +50,7 @@ function idValidation(facultyId){
 module.exports.requestHandler = async(req, res, next) =>{
     
     //because in front end already login flag is set to true...
-    req.alreadyLogin = true;
+    req.alreadySignin = true;
     if(!req.body.token){
         let err = new Error('Something went wrong!!! The required data not given');
         err.status = 400;
@@ -74,7 +74,7 @@ module.exports.requestHandler = async(req, res, next) =>{
 
         req.facultyId = req.body.facultyId;
         req.branchName = idObj.branchName;
-        req.alreadyLogin = false;
+        req.alreadySignin = false;
 
         return next();
     }   
@@ -86,7 +86,7 @@ module.exports.requestUser = async (req, res, next) => {
         var decoded = jwt.decode(req.body.token, { complete : true });
         var user = decoded.payload;
         req.uid = user.user_id;
-        if(!req.alreadyLogin){
+        if(!req.alreadySignin){
             if(user.user_id !== req.body.uid || user.email !== req.body.email || user.name !== req.body.name || user.picture !== req.body.photoUrl){
             let err = new Error('The given Data Invalid for the operation');
             err.status = 400;
