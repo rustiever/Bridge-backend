@@ -13,6 +13,9 @@ const signoutRouter = require("./routes/logout");
 const facultyLoginRouter = require('./faculty/routes/login');
 const facultyLogoutRouter = require('./faculty/routes/logout');
 
+const studentLoginRouter = require('./student/routes/login');
+const studentlogoutRouter = require('./student/routes/logout');
+
 const app = express();
 const faculty = express();
 const student = express();
@@ -30,8 +33,11 @@ student.use(parser.json());
 faculty.use('/api/login', facultyLoginRouter);
 faculty.use('/api/logout', facultyLogoutRouter);
 
-app.use("/api/auth", authRouter);
-app.use("/api/logout", signoutRouter);
+student.use('/api/login', studentLoginRouter);
+student.use('/api/logout', studentlogoutRouter);
+
+// app.use("/api/auth", authRouter);
+// app.use("/api/logout", signoutRouter);
 
 app.post("/api/posts", middleware.requestHandler, (req, res) => {
   (async () => {

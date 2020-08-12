@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
 
+const secret = require('./facconfig');
+const db = require('../../app');
+
 function idValidation(facultyId){
     let l = facultyId.length;
     if(l === 6){
@@ -101,3 +104,52 @@ module.exports.requestUser = async (req, res, next) => {
 };
 
 
+module.exports.checkToken = async (req, res, next) => {
+    if(!secret.AuthSecret()){
+        let err = new Error('Invalid operation');
+        err.status = 400;
+        return next(err);
+    }
+    req.secret = secret.AuthSecret();
+    const header = req.headers['authorization'];
+    if(typeof header !== 'undefined')
+    {
+       const bearer = header.split(' ');
+       const token = bearer[1];
+       req.token=token;
+       return next();
+     }
+    let err = new Error('Invalid Headers');
+    err.status = 401;
+    return next(err);
+};
+
+module.exports.authorizeToken = async (req, res, next) => {
+    if(!req.secret){
+        let err = new Error('Invalid operation ;Login first');
+        err.status = 401;
+        return next(err);
+    }
+    try{
+        const token = jwt.verify(req.token, req.secret);
+        if(!token){
+            let err = new Error('No User Found');
+            err.status = 404;
+            return next(err);
+        }
+        
+        const uid = token.id;
+        req.uid = uid;
+        const docRef = await db.collection('faculties').doc(uid);
+        const docData = (await docRef.get()).data();
+        const userToken = docData.token;
+        if(userToken.includes(req.token)){
+            return next();        
+        }
+        let err = new Error('not valid user');
+        err.status = 401;
+        return next(err);   
+    }catch(err){
+        return next(err);
+    }
+};
