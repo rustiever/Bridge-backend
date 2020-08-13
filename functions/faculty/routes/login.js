@@ -22,20 +22,20 @@ facultyRouter.post('/',middleware.requestHandler, middleware.requestUser, async(
                 branchName : req.branchName,
                 facultyId : req.facultyId
             }
-            let jsonwebtoken = await jwt.sign({id:req.uid},req.body.token);
+            let jsonwebtoken = jwt.sign({id: req.uid}, req.body.token);
             secret.secret(req.body.token);
             //console.log(secret.AuthSecret());
             obj.token = [jsonwebtoken];
-            const docRef = await db.collection('faculties').doc(uid);
+            const docRef = db.collection('faculties').doc(uid);
             await docRef.set(obj);
-            const result = await (await docRef.get()).data();
+            const result = (await docRef.get()).data();
             return res.status(201).send(result);
 
         }
 
-        const docRef = await db.collection('faculties').doc(req.uid);
+        const docRef = db.collection('faculties').doc(req.uid);
         if(docRef){
-            var jsonwebtoken = await jwt.sign({id : req.uid}, req.body.token);
+            var jsonwebtoken = jwt.sign({id: req.uid}, req.body.token);
             await docRef.update({
                 token : firebase.firestore.FieldValue.arrayUnion(jsonwebtoken)
             });

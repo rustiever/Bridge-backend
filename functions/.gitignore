@@ -6,3 +6,5 @@ student/auth/stuconfig.js
 
 #firebase service file, should keep private
 auth/config.js
+
+.DS_Store

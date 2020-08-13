@@ -1,6 +1,5 @@
 const functions = require("firebase-functions");
 // const admin = require("firebase-admin");
-const csv = require("csvtojson");
 const express = require("express");
 const parser = require("body-parser");
 const cors = require("cors");
@@ -12,6 +11,7 @@ const signoutRouter = require("./routes/logout");
 
 const facultyLoginRouter = require('./faculty/routes/login');
 const facultyLogoutRouter = require('./faculty/routes/logout');
+const facultyUploader =     require('./faculty/routes/uploader');
 
 const app = express();
 const faculty = express();
@@ -29,6 +29,7 @@ student.use(parser.json());
 //Faculties Api call section
 faculty.use('/api/login', facultyLoginRouter);
 faculty.use('/api/logout', facultyLogoutRouter);
+faculty.use('/api/upload', facultyUploader);
 
 app.use("/api/auth", authRouter);
 app.use("/api/logout", signoutRouter);
