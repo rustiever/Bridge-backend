@@ -14,13 +14,18 @@ app.post('/',(req, res,next) => {
             
             const filepath = path.join(__dirname, '../uploads/' + filename);
             uploads[fieldname] = { file: filepath };
-            
+            // console.log(file.readable);
+
             //console.log(`Saving '${fieldname}' to ${filepath}`);
             // fstream = fs.createWriteStream(filepath);
-            
-            file.pipe(fs.createWriteStream(filepath).on('close', ()=>{
-                return res.status(200).send('Done with uploading of the file : '+filename);
-            })); 
+            file.on('data',(data)=>{
+                //console.log(JSON.stringify(data.toString().split('\n')));
+                return res.status(200).send(JSON.stringify(data.toString().split('\n')));
+            });
+
+            // file.pipe(fs.createWriteStream(filepath).on('close', ()=>{
+            //     return res.status(200).send('Done with uploading of the file : '+filename);
+            // })); 
         });
 
         // This callback will be invoked after all uploaded files are saved.

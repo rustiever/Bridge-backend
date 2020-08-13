@@ -17,6 +17,7 @@ const facultyUploadRouter = require('./faculty/routes/uploader');
 
 const studentLoginRouter = require('./student/routes/login');
 const studentlogoutRouter = require('./student/routes/logout');
+const studentRegisterRouter = require('./student/routes/register');
 
 // const app = express();
 const faculty = express();
@@ -37,6 +38,7 @@ faculty.use('/api/login', facultyLoginRouter);
 faculty.use('/api/logout', facultyLogoutRouter);
 faculty.use('/api/upload', facultyUploadRouter);
 
+student.use('/api/register', studentRegisterRouter);
 student.use('/api/login', studentLoginRouter);
 student.use('/api/logout', studentlogoutRouter);
 

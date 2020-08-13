@@ -3,106 +3,126 @@ const jwt = require('jsonwebtoken');
 const secret = require('./stuconfig');
 const db = require('../../app');
 
-// function idValidation(facultyId){
-//     let l = facultyId.length;
-//     if(l === 6){
-//         let setFlag = false;
-//         var branchName ;
-//         const branch = facultyId.substr(0,3).toUpperCase();
-//         switch (branch) {
-//             case 'CSE' : setFlag = true;
-//                          branchName = "Computer Science and Engineering".toUpperCase();
-//                          break;
+module.exports.addUser = async (req, res, next) => {
+    try {
+        var branchName;
+        var usn = req.userData.USN.toUpperCase();
+        var name = req.userData.Name;
+        var branch = usn.substr(5,2);
+        var year ="20"+ usn.substr(3,2);
+        switch (branch)
+        {
+            case 'CS':branchName = "Computer Science and Engineering".toUpperCase();
+                setFlag = true;
+                break;
+      
+            case 'IS':branchName = "Information Science and Engineering".toUpperCase();
+                setFlag = true;
+                break;
+            
+            case 'EC':branchName = "Electronics and Communication Engineering".toUpperCase();
+                setFlag = true;
+                break;
+      
+            case 'ME':branchName = "Mechanical Engineering".toUpperCase();
+                setFlag = true;
+                break;
+                  
+            case 'AE':branchName = "Aeronautical Engineering".toUpperCase();
+                setFlag = true;
+                break;
 
-//             case 'MEE' : setFlag = true;
-//                          branchName = "Mechanical Engineering".toUpperCase();
-//                          break;
+            case 'CV':branchName = "Civil Engineering".toUpperCase();
+                setFlag = true;
+                break;
 
-//             case 'CVE' : setFlag = true;
-//                          branchName = "Civil Engineering".toUpperCase();
-//                          break;
+            case 'MT':branchName = "Mechatronics Engineering".toUpperCase();
+                setFlag = true;
+                break;
+        }
+        req.userData = {
+            Name : name,
+            USN : usn,
+            Branch : branchName,
+            Batch : Number(year),
+            UserID : req.uid,
+            Email : req.body.email,
+            PhotoURL : req.photo
+        };
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+};
 
-//             case "AEE" : setFlag = true;
-//                          branchName = "Aeronautical Engineering".toUpperCase();
-//                          break;
+module.exports.findUser = async (req, res, next) => {
+    try {
+        const docRef = db.collection('uploads').doc(req.body.email);
+        const user = await docRef.get();
+        if(!user.exists){
+            let err = new Error('Something went wrong!!! User not found');
+            err.status = 400;
+            return next(err);
+        }
+        const userData = user.data();
+        req.userData = userData;
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+};
 
-//             case 'MTE' : setFlag = true;
-//                          branchName = "Mechatronics Engineering".toUpperCase();
-//                          break;
+module.exports.validateUser = async (req, res, next) => {
+    try{
+        if(!req.body.token){
+            let err = new Error('Something went wrong!!! The required data not given');
+            err.status = 400;
+            return next(err);
+        }
+        const decoded = jwt.decode(req.body.token, { complete : true });
+        const user = decoded.payload;
+        if(user.email !== req.body.email){
+            let err = new Error('The given Data Invalid for the operation');
+            err.status = 400;
+            return next(err);
+        }
+        req.uid = user.user_id;
+        req.photo = user.picture;
+        return next();
+    }catch(err){
+        return next(err);
+    }
+};
+module.exports.validateToken = async (req, res, next) => {
+    try{
+        if(!req.body.token){
+            let err = new Error('Something went wrong!!! The required data not given');
+            err.status = 400;
+            return next(err);
+        }
+        const decoded = jwt.decode(req.body.token, { complete : true });
+        const user = decoded.payload;
+        req.uid = user.user_id;
+        return next();
+    }catch(err){
+        return next(err);
+    }
+};
 
-//             case 'ISE' : setFlag = true;
-//                          branchName = "Information Science and Engineering".toUpperCase();
-//                          break;
+module.exports.checkId = async (req, res, next) => {
+    try {
+        const isExists =  (await db.collection('users').doc(req.uid).get()).exists;
+        if(!isExists){
+            let err = new Error('User Not Found');
+            err.status = 401;
+            return next(err);
+        }
+        return next();
+    } catch (err) {
+        return next(err);
+    }
 
-//             case 'ECE' : setFlag = true;
-//                          branchName = "Electronics and Communication Engineering".toUpperCase();
-//                          break;
-        
-//             default : break;
-//         }
-//         if(setFlag){
-//             return {
-//                 branchName : branchName
-//             };
-//         }
-//         return null;
-//     }
-//     return null;
-// }
-
-// module.exports.requestHandler = async(req, res, next) =>{
-    
-//     //because in front end already login flag is set to true...
-//     req.alreadySignin = true;
-//     if(!req.body.token){
-//         let err = new Error('Something went wrong!!! The required data not given');
-//         err.status = 400;
-//         return next(err);
-//     }
-//     if(req.body.facultyId){
-//         if(!req.body.name || !req.body.email || !req.body.photoUrl ||!req.body.uid){
-//             const err = new Error('Something went wrong!!! Data insufficient');
-//             err.status = 400;
-//             return next(err);
-//         }
-
-//         //Get the branch details from the faculty ID
-//         var idObj = idValidation(req.body.facultyId);
-
-//         if(!idObj){
-//             var err = new Error('Invalid Faculty ID');
-//             err.status = 400;
-//             return next(err);
-//         }
-
-//         req.facultyId = req.body.facultyId;
-//         req.branchName = idObj.branchName;
-//         req.alreadySignin = false;
-
-//         return next();
-//     }   
-//     return next();
-// };
-
-// module.exports.requestUser = async (req, res, next) => {
-//     try{
-//         var decoded = jwt.decode(req.body.token, { complete : true });
-//         var user = decoded.payload;
-//         req.uid = user.user_id;
-//         if(!req.alreadySignin){
-//             if(user.user_id !== req.body.uid || user.email !== req.body.email || user.name !== req.body.name || user.picture !== req.body.photoUrl){
-//             let err = new Error('The given Data Invalid for the operation');
-//             err.status = 400;
-//             return next(err);
-//             }
-//             req.uid = req.body.uid;
-//         }
-//         return next();
-//     }catch(err){
-//         return next(err);
-//     }
-// };
-
+};
 
 module.exports.checkToken = async (req, res, next) => {
     if(!secret.AuthSecret()){
