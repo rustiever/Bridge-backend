@@ -1,3 +1,13 @@
+
+
+// const converter = csv()
+  // .fromFile("../dummyAssets/MOCK_DATA.csv")
+  // .then((json) => {
+    // console.log(json);
+    // return true;
+  // });
+// console.log(converter);
+
 const path = require('path');
 const os = require('os');
 const fs = require('fs');

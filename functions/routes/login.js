@@ -23,9 +23,9 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
     try{
     if(req.alreadyLogin){
         
-        const docRef = await db.collection('users').doc(req.uid);
+        const docRef = db.collection('users').doc(req.uid);
         if(docRef){
-        var jsonwebtoken = await jwt.sign({id:req.uid},req.body.token);
+        var jsonwebtoken = jwt.sign({id: req.uid}, req.body.token);
         await docRef.update({token : [jsonwebtoken]});
         let result = await docRef.get();
         secret.secret(req.body.token);
@@ -55,7 +55,7 @@ router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, nex
               photoUrl:photo,
               joined:joined
         });
-        let jsonwebtoken = await jwt.sign({id:req.uid},req.body.token);
+        let jsonwebtoken = jwt.sign({id: req.uid}, req.body.token);
         secret.secret(req.body.token);
         await docRef.update({token : [jsonwebtoken]});
         let result = await docRef.get();
