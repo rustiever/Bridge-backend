@@ -1,8 +1,3 @@
-const csv = require("csvtojson");
-const express = require("express");
-const fs = require("fs");
-const multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
 
 
 // const converter = csv()
@@ -13,24 +8,46 @@ var upload = multer({ dest: 'uploads/' });
   // });
 // console.log(converter);
 
-var uploadRouter = express();
+const path = require('path');
+const os = require('os');
+const fs = require('fs');
+const Busboy = require('busboy');
+const app = require('express').Router();
 
-uploadRouter.post('/', upload.single("file"),(req,res) => {
-    console.log('inside uploader');
-    console.log(req.body);
-    console.log(req.file);
+app.post('/',(req, res,next) => {
+        const busboy = new Busboy({ headers: req.headers });
+        // This object will accumulate all the uploaded files, keyed by their name
+        const uploads = {};
+        // This callback will be invoked for each file uploaded
+        busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+            // console.log(`File [${fieldname}] filename: ${filename}, encoding: ${encoding}, mimetype: ${mimetype}`);
+            
+            const filepath = path.join(__dirname, '../uploads/' + filename);
+            uploads[fieldname] = { file: filepath };
+            
+            //console.log(`Saving '${fieldname}' to ${filepath}`);
+            // fstream = fs.createWriteStream(filepath);
+            
+            file.pipe(fs.createWriteStream(filepath).on('close', ()=>{
+                return res.status(200).send('Done with uploading of the file : '+filename);
+            })); 
+        });
 
-    // console.log("Received file" + req.file.originalname);
+        // This callback will be invoked after all uploaded files are saved.
+        // busboy.on('finish', () => {
+        //     for (const name in uploads) {
+        //         const upload = uploads[name];
+        //         const file = upload.file;
+        //         res.write(`${file}\n`);
+        //         fs.unlinkSync(file);
+        //     }
+        //     res.end();
+        // });
 
-    // var src = fs.createReadStream(req.file.path);
-    // var dest = fs.createWriteStream('uploads/' + req.file.originalname);
-    // src.pipe(dest);
-    // src.on('end', ()=> {
-      // fs.unlinkSync(req.file.path);
-      // return res.json('OK: received ' + req.file.originalname);
-    // });
-    // src.on('error', (err)=> { return res.json('Something went wrong!'+err); });
-  
-  });
+        // The raw bytes of the upload will be in req.rawBody.  Send it to busboy, and get
+        // a callback when it's finished.
 
-module.exports = uploadRouter;
+        busboy.end(req.rawBody);
+});
+
+module.exports = app;
