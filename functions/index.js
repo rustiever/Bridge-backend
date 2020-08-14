@@ -5,22 +5,28 @@ const parser = require("body-parser");
 const cors = require("cors");
 const fileMiddleware = require('express-multipart-file-parser');
 
-
 // const db = require("./app");
 // const middleware = require("./middleware");
 // const authRouter = require("./routes/login");
 // const signoutRouter = require("./routes/logout");
 
+//Anonymous API Routers...
+const anonymousRouter = require('./routes/publicHome');
+
+//Faculty API Routers...
 const facultyLoginRouter = require('./faculty/routes/login');
 const facultyLogoutRouter = require('./faculty/routes/logout');
 const facultyUploadRouter = require('./faculty/routes/uploader');
 
+//Student API Routers..
 const studentLoginRouter = require('./student/routes/login');
 const studentlogoutRouter = require('./student/routes/logout');
+const studentRegisterRouter = require('./student/routes/register');
 
 // const app = express();
 const faculty = express();
 const student = express();
+const anonymous = express();
 
 // app.use(cors({ origin: true }));
 // app.use(parser.json());
@@ -32,11 +38,19 @@ faculty.use(fileMiddleware);
 student.use(cors({ origin: true }));
 student.use(parser.json());
 
-//Faculties Api call section
+anonymous.use(cors({ origin: true }));
+anonymous.use(parser.json());
+
+//Anonymous Users API call section...
+anonymous.use('/api/home', anonymousRouter);
+
+//Faculties API call section..
 faculty.use('/api/login', facultyLoginRouter);
 faculty.use('/api/logout', facultyLogoutRouter);
 faculty.use('/api/upload', facultyUploadRouter);
 
+//Student API call section...
+student.use('/api/register', studentRegisterRouter);
 student.use('/api/login', studentLoginRouter);
 student.use('/api/logout', studentlogoutRouter);
 
@@ -67,3 +81,4 @@ student.use('/api/logout', studentlogoutRouter);
 
 exports.faculty = functions.https.onRequest(faculty);
 exports.student = functions.https.onRequest(student);
+exports.anonymous = functions.https.onRequest(anonymous);
