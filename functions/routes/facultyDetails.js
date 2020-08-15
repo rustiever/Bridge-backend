@@ -1,11 +1,11 @@
-const anonymousRouter = require('express').Router();
+const detailRouter = require('express').Router();
 
 const db = require('../app');
 
-anonymousRouter.get('/', async (req, res, next) => {
+detailRouter.get('/', async (req, res, next) => {
     try {
-        const collectionRef = db.collection('posts');
-        const docsRef = await collectionRef.where( 'global', '==', true).get();
+        const docsRef = await db.collection('faculties').get();
+        //const docsRef = await collectionRef.where( 'global', '==', true).get();
         if (docsRef.empty) {
             return res.status(204).send('No data found');
         }  
@@ -17,8 +17,9 @@ anonymousRouter.get('/', async (req, res, next) => {
         result.data = obj;
         return res.status(200).json(result);
     } catch (err) {
-        return res.send(err)
+        return res.send(err);
     }
 });
 
-module.exports = anonymousRouter;
+
+module.exports = detailRouter;

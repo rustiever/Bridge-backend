@@ -12,6 +12,7 @@ const fileMiddleware = require('express-multipart-file-parser');
 
 //Anonymous API Routers...
 const anonymousRouter = require('./routes/publicHome');
+const facultyDetailsRouter = require('./routes/facultyDetails');
 
 //Faculty API Routers...
 const facultyLoginRouter = require('./faculty/routes/login');
@@ -43,6 +44,7 @@ anonymous.use(parser.json());
 
 //Anonymous Users API call section...
 anonymous.use('/api/home', anonymousRouter);
+anonymous.use('/api/faculties', facultyDetailsRouter);
 
 //Faculties API call section..
 faculty.use('/api/login', facultyLoginRouter);
