@@ -18,6 +18,7 @@ const facultyDetailsRouter = require('./routes/facultyDetails');
 const facultyLoginRouter = require('./faculty/routes/login');
 const facultyLogoutRouter = require('./faculty/routes/logout');
 const facultyUploadRouter = require('./faculty/routes/uploader');
+const facultyPostRouter = require('./faculty/routes/post');
 
 //Student API Routers..
 const studentLoginRouter = require('./student/routes/login');
@@ -43,18 +44,19 @@ anonymous.use(cors({ origin: true }));
 anonymous.use(parser.json());
 
 //Anonymous Users API call section...
-anonymous.use('/api/home', anonymousRouter);
-anonymous.use('/api/faculties', facultyDetailsRouter);
+anonymous.use('/home', anonymousRouter);
+//anonymous.use('/api/faculties', facultyDetailsRouter);
 
 //Faculties API call section..
-faculty.use('/api/login', facultyLoginRouter);
-faculty.use('/api/logout', facultyLogoutRouter);
-faculty.use('/api/upload', facultyUploadRouter);
+faculty.use('/login', facultyLoginRouter);
+faculty.use('/logout', facultyLogoutRouter);
+faculty.use('/upload', facultyUploadRouter);
+faculty.use('/post', facultyPostRouter);
 
 //Student API call section...
-student.use('/api/register', studentRegisterRouter);
-student.use('/api/login', studentLoginRouter);
-student.use('/api/logout', studentlogoutRouter);
+student.use('/register', studentRegisterRouter);
+student.use('/login', studentLoginRouter);
+student.use('/logout', studentlogoutRouter);
 
 // app.use("/api/auth", authRouter);
 // app.use("/api/logout", signoutRouter);

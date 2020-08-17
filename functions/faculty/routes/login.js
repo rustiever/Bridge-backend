@@ -29,7 +29,10 @@ facultyRouter.post('/',middleware.requestHandler, middleware.requestUser, async(
             const docRef = db.collection('faculties').doc(uid);
             await docRef.set(obj);
             const result = (await docRef.get()).data();
-            return res.status(201).send(result);
+            let resobj = {};
+            resobj.authorizeToken = jsonwebtoken;
+            resobj.data = result;
+            return res.status(201).send(resobj);
 
         }
 
@@ -39,10 +42,13 @@ facultyRouter.post('/',middleware.requestHandler, middleware.requestUser, async(
             await docRef.update({
                 token : firebase.firestore.FieldValue.arrayUnion(jsonwebtoken)
             });
-            let result = await docRef.get();
+            let result = (await docRef.get()).data();
             secret.secret(req.body.token);
+            let resobj = {};
+            resobj.authorizeToken = jsonwebtoken;
+            resobj.data = result;
             //console.log(secret.AuthSecret());
-            return res.status(200).send(result.data());
+            return res.status(200).send(resobj);
         }
         
         return res.status(400).send('Invalid Credentials');
