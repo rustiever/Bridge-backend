@@ -15,6 +15,7 @@ anonymousRouter.get('/', async (req, res, next) => {
             var d = doc.data();
             //obj.push(doc.data());
             obj.push({
+                postId : doc.id,
                 caption : d.caption,
                 likes: d.likes,
                 photoUrl: d.photoUrl,
