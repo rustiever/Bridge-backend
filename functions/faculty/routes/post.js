@@ -25,7 +25,7 @@ postRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (re
         //For now I set to global scope of each post...
         obj.scope = 'global';
         obj.timeStamp = firebase.firestore.Timestamp.now();
-        const docRef = await db.collection('dummyposts').doc();
+        const docRef = await db.collection('posts').doc();
         await docRef.set(obj);
         return res.status(200).json({postId : docRef.id});
     }
