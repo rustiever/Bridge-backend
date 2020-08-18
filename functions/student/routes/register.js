@@ -10,9 +10,8 @@ const secret = require('../auth/stuconfig');
 registerRouter.use(parser.json());
 
 registerRouter.post('/', middleware.validateUser, middleware.findUser, middleware.addUser, async (req, res, next) => {
-
     try{
-        const jsonwebtoken = await jwt.sign({id:req.uid},req.body.token);
+        const jsonwebtoken = await jwt.sign({id:req.uid, user : 'users'},req.body.token);
         req.userData.token = [ jsonwebtoken ];
 
         const docRef = db.collection('users').doc(req.uid);

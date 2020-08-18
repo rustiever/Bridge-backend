@@ -140,6 +140,7 @@ module.exports.authorizeToken = async (req, res, next) => {
         
         const uid = token.id;
         req.uid = uid;
+        req.usertype = token.user;
         const docRef = await db.collection('faculties').doc(uid);
         const docData = (await docRef.get()).data();
         const userToken = docData.token;

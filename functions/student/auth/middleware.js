@@ -40,6 +40,7 @@ module.exports.addUser = async (req, res, next) => {
                 setFlag = true;
                 break;
         }
+        let listval = [];
         req.userData = {
             Name : name,
             USN : usn,
@@ -47,7 +48,8 @@ module.exports.addUser = async (req, res, next) => {
             Batch : Number(year),
             UserID : req.uid,
             Email : req.body.email,
-            PhotoURL : req.photo
+            PhotoURL : req.photo,
+            bookmarks : listval
         };
         return next();
     } catch (err) {
@@ -160,6 +162,7 @@ module.exports.authorizeToken = async (req, res, next) => {
         
         const uid = token.id;
         req.uid = uid;
+        req.usertype = token.user;
         const docRef = await db.collection('users').doc(uid);
         const docData = (await docRef.get()).data();
         const userToken = docData.token;
