@@ -2,7 +2,6 @@ const postRouter = require('express').Router();
 const firebase = require('firebase');
 
 const db = require('../../app');
-const secret = require('../auth/facconfig');
 const middleware = require('../auth/middleware');
 
 postRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res, next) => {
