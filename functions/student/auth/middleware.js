@@ -42,14 +42,14 @@ module.exports.addUser = async (req, res, next) => {
         }
         let listval = [];
         req.userData = {
-            Name : name,
-            USN : usn,
-            Branch : branchName,
-            Batch : Number(year),
-            UserID : req.uid,
-            Email : req.body.email,
-            PhotoURL : req.photo,
-            bookmarks : listval
+            name : name,
+            usn : usn,
+            branch : branchName,
+            batch : Number(year),
+            email : req.body.email,
+            photoURL : req.photo,
+            bookmarks : listval,
+            likedPosts: listval
         };
         return next();
     } catch (err) {
@@ -59,7 +59,7 @@ module.exports.addUser = async (req, res, next) => {
 
 module.exports.findUser = async (req, res, next) => {
     try {
-        const docRef = db.collection('uploads').doc(req.body.email);
+        const docRef = db.collection('uploads/students/cs').doc(req.body.email);
         const user = await docRef.get();
         if(!user.exists){
             let err = new Error('Something went wrong!!! User not found');

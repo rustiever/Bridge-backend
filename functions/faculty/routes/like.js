@@ -9,7 +9,7 @@ likeRouter.put('/', middleware.checkToken, middleware.authorizeToken, async ( re
         const docRef = await db.collection('posts').doc(req.body.postId);
         const resData = await docRef.get();
         if(!resData.exists){
-            return res.status(204);
+            return res.status(204).send('No data found');
         }
         let likeData = resData.data().likes;
         const userRef = await db.collection(req.usertype).doc(req.uid);
@@ -20,7 +20,7 @@ likeRouter.put('/', middleware.checkToken, middleware.authorizeToken, async ( re
             await userRef.update({
                 likedPosts : firebase.firestore.FieldValue.arrayRemove(req.body.postId)
             });
-            return res.status(201).send('Disliked The Post');
+            return res.status(200).send('Disliked The Post');
         }
         await docRef.update({
             likes : firebase.firestore.FieldValue.arrayUnion(req.uid)
@@ -28,7 +28,7 @@ likeRouter.put('/', middleware.checkToken, middleware.authorizeToken, async ( re
         await userRef.update({
             likedPosts : firebase.firestore.FieldValue.arrayUnion(req.body.postId)
         });
-        return res.status(201).send('Liked The Post');
+        return res.status(200).send('Liked The Post');
     } catch (err) {
         return res.send(err);
     }

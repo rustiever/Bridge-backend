@@ -11,6 +11,7 @@ const facultyDetailsRouter = require('./routes/facultyDetails');
 
 
 //Faculty API Routers...
+const facultyRegisterRouter = require('./faculty/routes/register');
 const facultyLoginRouter = require('./faculty/routes/login');
 const facultyLogoutRouter = require('./faculty/routes/logout');
 const facultyUploadRouter = require('./faculty/routes/uploader');
@@ -51,6 +52,7 @@ anonymous.use('/home', anonymousRouter);
 
 
 //Faculties API call section..
+faculty.use('/register', facultyRegisterRouter);
 faculty.use('/login', facultyLoginRouter);
 faculty.use('/logout', facultyLogoutRouter);
 faculty.use('/upload', facultyUploadRouter);
