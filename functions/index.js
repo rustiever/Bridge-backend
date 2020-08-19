@@ -7,7 +7,7 @@ const fileMiddleware = require('express-multipart-file-parser');
 
 //Anonymous API Routers...
 const anonymousRouter = require('./routes/publicHome');
-const facultyDetailsRouter = require('./routes/facultyDetails');
+//const facultyDetailsRouter = require('./routes/facultyDetails');
 
 
 //Faculty API Routers...
@@ -19,6 +19,7 @@ const facultyPostRouter = require('./faculty/routes/post');
 const facultyLikeRouter = require('./faculty/routes/like');
 const facultySaveRouter = require('./faculty/routes/bookmark');
 const facultyCommentRouter = require('./faculty/routes/comment');
+const facultyGetCommentRouter = require('./faculty/routes/getComments');
 
 
 //Student API Routers..
@@ -62,6 +63,7 @@ faculty.use('/post', facultyPostRouter);
 faculty.use('/like', facultyLikeRouter);
 faculty.use('/bookmark', facultySaveRouter);
 faculty.use('/comment', facultyCommentRouter);
+faculty.use('/getComments', facultyGetCommentRouter);
 
 
 //Student API call section...

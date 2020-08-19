@@ -19,14 +19,15 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
         obj.userId = req.uid;
         obj.username = req.body.name;
         obj.usertype = req.usertype;
+        obj.time = firebase.firestore.Timestamp.now();
 
-        var resObj = {};
-        const valId = firebase.firestore.Timestamp.now();
+        // var resObj = {};
+        // const valId = firebase.firestore.Timestamp.now();
 
-        resObj[valId] = obj;
+        // resObj[valId] = obj;
         
         await docRef.update({
-            comments : firebase.firestore.FieldValue.arrayUnion(resObj)
+            comments : firebase.firestore.FieldValue.arrayUnion(obj)
         });
         return res.status(200).send('done');
     } catch (err) {

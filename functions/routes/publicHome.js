@@ -19,7 +19,7 @@ anonymousRouter.get('/', async (req, res, next) => {
                 caption : d.caption,
                 likes: (d.likes).length,
                 photoUrl: d.photoUrl,
-                scope: d.scope,
+                //scope: d.scope,
                 ownerName: d.ownerName,
                 ownerPhotoUrl: d.ownerPhotoUrl,
                 ownerUid: d.ownerUid,
