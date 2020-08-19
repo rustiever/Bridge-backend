@@ -19,9 +19,23 @@ studentRouter.post('/',middleware.validateToken,middleware.checkId, async(req, r
         });
         let result = await docRef.get();
         secret.secret(req.body.token);
+
         var obj = {};
+        var finalData = {};
+        var userData = result.data();
+
+        finalData.uid = req.uid;
+        finalData.name = userData.name;
+        finalData.email = userData.email;
+        finalData.photoUrl = userData.photoURL;
+        finalData.phone = userData.phone;       
+        finalData.usn = userData.usn;
+        finalData.branch = userData.branch;
+        finalData.batch = userData.batch;
+
+        obj.userData = finalData;
         obj.authorizeToken = jsonwebtoken;
-        obj.userData= result.data();
+
         return res.status(200).send(obj);
     } catch (err) {
         return res.status(400).send(err);
