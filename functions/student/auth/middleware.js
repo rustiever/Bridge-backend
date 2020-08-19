@@ -176,3 +176,13 @@ module.exports.authorizeToken = async (req, res, next) => {
         return next(err);
     }
 };
+
+module.exports.checkPost = async (req, res, next) => {
+    if(!req.body.postId){
+        let err = new Error('No Post is specified');
+        err.status = 401;
+        return next(err);
+    }
+    
+    return next();
+};
