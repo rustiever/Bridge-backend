@@ -28,7 +28,7 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
         await docRef.update({
             comments : firebase.firestore.FieldValue.arrayUnion(resObj)
         });
-        return res.status(200).send((await docRef.get()).data().comments);
+        return res.status(200).send('done');
     } catch (err) {
         return res.send(err.toString());
     }
