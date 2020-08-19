@@ -29,6 +29,7 @@ const studentRegisterRouter = require('./student/routes/register');
 const studentLikeRouter = require('./student/routes/like');
 const studentSaveRouter = require('./student/routes/bookmark');
 const studentCommentRouter = require('./student/routes/comment');
+const studentGetCommentRouter = require('./student/routes/getComments');
 
 
 //EXPRESS APPs Section...
@@ -73,6 +74,7 @@ student.use('/logout', studentlogoutRouter);
 student.use('/like', studentLikeRouter);
 student.use('/bookmark', studentSaveRouter);
 student.use('/comment', studentCommentRouter);
+student.use('/getComments', studentGetCommentRouter);
 
 
 //Cloud Functions Section...
