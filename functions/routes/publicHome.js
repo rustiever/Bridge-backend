@@ -24,8 +24,8 @@ anonymousRouter.get('/', async (req, res, next) => {
                 ownerPhotoUrl: d.ownerPhotoUrl,
                 ownerUid: d.ownerUid,
                 timeStamp: d.timeStamp.seconds,
-                //comments: d.comments
-                comments:Number(10)
+                //For now i kept comments as a number
+                comments:(d.comments).length
             });
         });
 

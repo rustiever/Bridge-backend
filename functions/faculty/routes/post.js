@@ -19,10 +19,10 @@ postRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (re
         obj.likes = [];
 
         //obj.comments = null;
-        obj.comments = 10;
+        obj.comments = [];
 
         //For now I set to global scope of each post...
-        obj.scope = 'global';
+        obj.scope = ['global'];
         obj.timeStamp = firebase.firestore.Timestamp.now();
         const docRef = await db.collection('posts').doc();
         await docRef.set(obj);

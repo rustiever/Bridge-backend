@@ -4,7 +4,7 @@ const firebase = require('firebase');
 const db = require('../../app');
 const middleware = require('../auth/middleware');
 
-saveRouter.put('/', middleware.checkToken, middleware.authorizeToken, async (req, res, next) => {
+saveRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res, next) => {
     try {
         const docRef = await db.collection('posts').doc(req.body.postId);
         let postData = await docRef.get();

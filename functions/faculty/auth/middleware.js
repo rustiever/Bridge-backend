@@ -283,3 +283,13 @@ module.exports.checkId = async (req, res, next) => {
     }
 
 };
+
+module.exports.checkPost = async (req, res, next) => {
+    if(!req.body.postId){
+        let err = new Error('No Post is specified');
+        err.status = 401;
+        return next(err);
+    }
+    
+    return next();
+};
