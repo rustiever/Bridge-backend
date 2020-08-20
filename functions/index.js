@@ -13,6 +13,7 @@ const anonymousRouter = require('./routes/publicHome');
 //Faculty API Routers...
 const facultyRegisterRouter = require('./faculty/routes/register');
 const facultyLoginRouter = require('./faculty/routes/login');
+const facultyHomeRouter = require('./faculty/routes/home');
 const facultyLogoutRouter = require('./faculty/routes/logout');
 const facultyUploadRouter = require('./faculty/routes/uploader');
 const facultyPostRouter = require('./faculty/routes/post');
@@ -26,6 +27,7 @@ const facultyGetCommentRouter = require('./faculty/routes/getComments');
 const studentLoginRouter = require('./student/routes/login');
 const studentlogoutRouter = require('./student/routes/logout');
 const studentRegisterRouter = require('./student/routes/register');
+const studentHomeRouter = require('./student/routes/home') ;
 const studentLikeRouter = require('./student/routes/like');
 const studentSaveRouter = require('./student/routes/bookmark');
 const studentCommentRouter = require('./student/routes/comment');
@@ -58,6 +60,7 @@ anonymous.use('/home', anonymousRouter);
 //Faculties API call section..
 faculty.use('/register', facultyRegisterRouter);
 faculty.use('/login', facultyLoginRouter);
+faculty.use('/home', facultyHomeRouter);
 faculty.use('/logout', facultyLogoutRouter);
 faculty.use('/upload', facultyUploadRouter);
 faculty.use('/post', facultyPostRouter);
@@ -70,6 +73,7 @@ faculty.use('/getComments', facultyGetCommentRouter);
 //Student API call section...
 student.use('/register', studentRegisterRouter);
 student.use('/login', studentLoginRouter);
+student.use('/home', studentHomeRouter);
 student.use('/logout', studentlogoutRouter);
 student.use('/like', studentLikeRouter);
 student.use('/bookmark', studentSaveRouter);
