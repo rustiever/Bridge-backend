@@ -5,7 +5,7 @@ const db = require('../app');
 anonymousRouter.get('/', async (req, res, next) => {
     try {
         const collectionRef = db.collection('posts');
-        const docsRef = await collectionRef.where( 'scope', '==', 'global').get();
+        const docsRef = await collectionRef.where( 'scope', 'array-contains', 'global').get();
         if (docsRef.empty) {
             return res.status(204).end('No data found');
         }  
