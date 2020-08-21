@@ -11,7 +11,7 @@ registerRouter.use(parser.json());
 
 registerRouter.post('/', middleware.validateUser, middleware.findUser, middleware.addUser, async (req, res, next) => {
     try{
-        const jsonwebtoken = await jwt.sign({ id : req.uid, user : 'users'}, secret.AuthSecret());
+        const jsonwebtoken = await jwt.sign({ id : req.uid, user : 'users'}, secret.AuthSecret(req.uid));
         req.userData.token = [ jsonwebtoken ];
         const docRef = db.collection('users').doc(req.uid);
         await docRef.set(req.userData);

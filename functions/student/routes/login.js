@@ -13,7 +13,7 @@ studentRouter.use(parser.json());
 studentRouter.post('/',middleware.validateToken,middleware.checkId, async(req, res, next) => {
     try {
         const docRef = db.collection('users').doc(req.uid);
-        const jsonwebtoken = await jwt.sign({id:req.uid, user : 'users'},secret.AuthSecret());
+        const jsonwebtoken = await jwt.sign({id:req.uid, user : 'users'},secret.AuthSecret(req.uid));
         await docRef.update({
             token : firebase.firestore.FieldValue.arrayUnion(jsonwebtoken)
         });
