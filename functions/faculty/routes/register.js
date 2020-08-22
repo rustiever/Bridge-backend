@@ -8,14 +8,13 @@ const secret = require('../auth/facconfig');
 
 registerRouter.post('/', middleware.validateUser, middleware.findUser, middleware.addUser, async (req, res, next) => {
     try{
-        const jsonwebtoken = await jwt.sign({id:req.uid, user : 'faculties'}, req.body.token);
+        const jsonwebtoken = await jwt.sign({id:req.uid, user : 'faculties'}, secret.AuthSecret(req.uid));
         req.userData.token = [ jsonwebtoken ];
 
         const docRef = db.collection('faculties').doc(req.uid);
         await docRef.set(req.userData);
         
         let result = await docRef.get();
-        secret.secret(req.body.token);
         
         var obj = {};
         var finalData = {};

@@ -105,18 +105,15 @@ const db = require('../../app');
 
 
 module.exports.checkToken = async (req, res, next) => {
-    if(!secret.AuthSecret()){
-        let err = new Error('Invalid operation');
-        err.status = 400;
-        return next(err);
-    }
-    req.secret = secret.AuthSecret();
     const header = req.headers['authorization'];
     if(typeof header !== 'undefined')
     {
-       const bearer = header.split(' ');
-       const token = bearer[1];
-       req.token=token;
+        const bearer = header.split(' ');
+        const token = bearer[1];
+        req.token=token;
+        const decoded = jwt.decode(token, { complete : true });
+        const user = decoded.payload;
+        req.secret = user.id;
        return next();
      }
     let err = new Error('Invalid Headers');
@@ -131,7 +128,7 @@ module.exports.authorizeToken = async (req, res, next) => {
         return next(err);
     }
     try{
-        const token = jwt.verify(req.token, req.secret);
+        const token = jwt.verify(req.token, secret.AuthSecret(req.secret));
         if(!token){
             let err = new Error('No User Found');
             err.status = 404;
