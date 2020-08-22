@@ -10,7 +10,6 @@ homeRoute.get('/', async (req, res, next) => {
         const docData = await (await db.collection('faculties').doc("H3KOr0tq8Wcg5cK8HIY6AeRRZj73").get()).data();
         const postsRef = db.collection('posts');
         const scopeData = docData.scope;
-        //console.log(scopeData);
         const len = scopeData.length;
         var resData = [];
         var limit = 50;
@@ -21,6 +20,7 @@ homeRoute.get('/', async (req, res, next) => {
         }
         else{
             let newScope = scopeData.slice(0,9);
+            if(len-9 >= 0)
             newScope.push('global');
             objsData = await postsRef.where('scope','array-contains-any', newScope).orderBy('timeStamp', 'asc').limit(50).get();
         }

@@ -290,3 +290,21 @@ module.exports.checkPost = async (req, res, next) => {
     
     return next();
 };
+
+module.exports.homeData = async ( req, res, next) => {
+    const docData = await (await db.collection('faculties').doc("H3KOr0tq8Wcg5cK8HIY6AeRRZj73").get()).data();
+    const postsRef = db.collection('posts');
+    const scopeData = docData.scope;
+    const len = scopeData.length;
+    var i = 0;
+    while(i<len)
+    {
+        if(i<8)
+        var newScope = scopeData.slice(i,i+8);
+        i += 8;
+    }
+};
+
+resultHandler = async (req, res, next) => {
+    objsData = await postsRef.where('scope','array-contains-any', newScope).orderBy('timeStamp', 'asc').limit(50).get();
+};
