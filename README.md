@@ -4,7 +4,7 @@
 
 ## Installation
 
-after cloning this repo issue a command ```npm install``` in functions folder
+After cloning this repo issue a command ```npm install``` in functions folder. But the firebase configuration file has to be added manually with name ```config.js``` at the specific location to function the server. 
 
 ## Usage
 
