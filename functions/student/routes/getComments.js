@@ -4,7 +4,7 @@ const firebase = require('firebase');
 const db = require('../../app');
 const middleware = require('../auth/middleware');
 
-getCommentRouter.post('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res, next) => {
+getCommentRouter.post('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
         const docRef = await db.collection('posts').doc(req.body.postId);
         const resData = await docRef.get()

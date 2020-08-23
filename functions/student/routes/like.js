@@ -4,15 +4,15 @@ const firebase = require('firebase');
 const db = require('../../app');
 const middleware = require('../auth/middleware');
 
-likeRouter.put('/', middleware.checkToken, middleware.authorizeToken, async ( req, res, next) => {
+likeRouter.put('/', middleware.checkToken, middleware.authorizeToken, async ( req, res) => {
     try {
-        const docRef = await db.collection('posts').doc(req.body.postId);
+        const docRef = db.collection('posts').doc(req.body.postId);
         const resData = await docRef.get();
         if(!resData.exists){
             return res.status(204).send('No post Data found');
         }
         let likeData = resData.data().likes;
-        const userRef = await db.collection(req.usertype).doc(req.uid);
+        const userRef = db.collection(req.usertype).doc(req.uid);
         if(likeData.includes(req.uid)){
             await docRef.update({
                 likes : firebase.firestore.FieldValue.arrayRemove(req.uid)
