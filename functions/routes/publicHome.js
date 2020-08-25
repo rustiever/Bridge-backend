@@ -2,7 +2,7 @@ const anonymousRouter = require('express').Router();
 
 const db = require('../app');
 
-anonymousRouter.get('/', async (req, res, next) => {
+anonymousRouter.get('/', async (_req, res) => {
     try {
         const collectionRef = db.collection('posts');
         const docsRef = await collectionRef.where( 'scope', 'array-contains', 'global').get();
