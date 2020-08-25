@@ -39,6 +39,7 @@ const studentGetCommentRouter = require('./student/routes/getComments');
 const faculty = express();
 const student = express();
 const anonymous = express();
+const auth = express();
 
 
 //Middlewares for EXPRESS-APP Section...
@@ -51,6 +52,9 @@ student.use(parser.json());
 
 anonymous.use(cors({ origin: true }));
 anonymous.use(parser.json());
+
+auth.use(cors({ origin: true }));
+auth.use(parser.json());
 
 
 //Anonymous Users API call section...
@@ -87,3 +91,4 @@ student.use('/getComments', studentGetCommentRouter);
 exports.faculty = functions.https.onRequest(faculty);
 exports.student = functions.https.onRequest(student);
 exports.anonymous = functions.https.onRequest(anonymous);
+exports.auth = functions.https.onRequest(auth);
