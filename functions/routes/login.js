@@ -1,71 +1,44 @@
 const express = require('express');
 const parser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const firebase = require('firebase');
 
-const db = require('../app');
-const middleware = require('../middleware');
-const secret = require('../auth/config');
+const db = require('../../app');
+const middleware = require('../auth/middleware');
+const secret = require('../auth/facconfig');
 
-const router = express.Router();
+const facultyRouter = express.Router();
+facultyRouter.use(parser.json());
 
-router.use(parser.json());
-
-
-// function boolCheck(str){
-//     if(str==="true")return true;
-//     else if(str==="false")return false;
-//     else return false;
-// }
-
-router.post('/',middleware.requestHandler, middleware.requestUser,(req, res, next) => {
-    
-    (async ()=>{
-    try{
-    if(req.alreadyLogin){
-        
-        const docRef = db.collection('users').doc(req.uid);
-        if(docRef){
-        var jsonwebtoken = jwt.sign({id: req.uid}, req.body.token);
-        await docRef.update({token : [jsonwebtoken]});
-        let result = await docRef.get();
-        secret.secret(req.body.token);
-        //console.log(secret.secret);
-        return res.status(200).send(result.data());
-        }
-        return res.status(400).send("Invalid token");
-    }else{
-        var checked = middleware.usnValidation((req.body.usn).toUpperCase());
-        if(checked.name === 'User-Exception'){
-            res.status(400).send(checked.message);
-        }
-        const uid = req.uid;
-        const email = req.body.email;
-        const photo = req.body.photoUrl;
-        const name = req.body.name;
-        //const joined = boolCheck(String(req.body.joined).toLowerCase());
-        const joined = req.body.joined;
-        
-        const docRef =  db.collection('users').doc(uid);
-        await docRef.set({
-              branch: checked.branchName, 
-              batch : Number(checked.year),
-              USN:checked.usn,
-              email:email,
-              name:name,
-              photoUrl:photo,
-              joined:joined
+facultyRouter.post('/',middleware.validateToken,middleware.checkId, async(req, res, next) => {
+    try {
+        const docRef = db.collection('faculties').doc(req.uid);
+        const jsonwebtoken = await jwt.sign({ id : req.uid, user : 'faculties'}, secret.AuthSecret(req.uid));
+        await docRef.update({
+            token : firebase.firestore.FieldValue.arrayUnion(jsonwebtoken)
         });
-        let jsonwebtoken = jwt.sign({id: req.uid}, req.body.token);
-        secret.secret(req.body.token);
-        await docRef.update({token : [jsonwebtoken]});
+
         let result = await docRef.get();
-        //console.log(result.data());
-        return res.status(201).send(result.data());
+
+        var obj = {};
+        var finalData = {};
+        var userData = result.data();
+
+        finalData.uid = req.uid;
+        finalData.name = userData.name;
+        finalData.email = userData.email;
+        finalData.photoUrl = userData.photoURL;
+        finalData.phone = userData.phone;
+        finalData.facultyId = userData.facultyId;
+        finalData.branch = userData.branch;
+
+        obj.userData = finalData;
+        obj.authorizeToken = jsonwebtoken;
+
+        return res.status(200).send(obj);
+    } catch (err) {
+        return res.status(400).send(err);
     }
-    }
-    catch(err){
-        return res.send(err);
-    }})();
 });
 
-module.exports = router;
+module.exports = facultyRouter;
