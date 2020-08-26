@@ -61,11 +61,11 @@ auth.use(parser.json());
 auth.use('/register', userRegister);
 auth.use('/login', userLogin);
 auth.use('/logout', userLogout);
+//anonymous.use('/api/faculties', facultyDetailsRouter);
 
 
 //Anonymous Users API call section...
 anonymous.use('/home', anonymousRouter);
-//anonymous.use('/api/faculties', facultyDetailsRouter);
 
 
 //Faculties API call section..
