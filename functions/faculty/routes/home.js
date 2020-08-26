@@ -14,14 +14,14 @@ homeRoute.get("/", async (req, res, next) => {
     const scopeData = docData.scope;
     var count = 5;
     var qualifier = {
-      branch: "CSE",
-      batch: "2017",
+      branch: "CS",
+      batch: 2016,
       groups: [
         "cc",
         "echo",
         "ab",
-        "bc",
-        "abcd",
+        //"bc",
+        //"abcd",
         "bvv",
         "fh",
         "mk",
@@ -32,49 +32,36 @@ homeRoute.get("/", async (req, res, next) => {
     var resData = [];
     const postsRef = await db
       .collection("posts")
-      .orderBy("timeStamp", "asc")
-      .limit(10)
+      .orderBy("timeStamp", 'desc')
+      .limit(20)
       .get();
     postsRef.forEach((element) => {
       var data = element.data();
-      if (typeof data.scope === "boolean") {
+      //console.log(data);
+
+      if (typeof data.scope === "boolean" && data.scope === false ) {
+        console.log('came here');
         data.postId = element.id;
         data.likes = data.likes.length;
         data.comments = data.comments.length;
         resData.push(data);
       } else {
-        if (
-          data.scope.batch === true ||
-          (typeof data.scope.batch === "object" &&
-            data.scope.batch.includes(qualifier.batch))
-        ) {
-            console.log('batch');
-          if (
-            data.scope.branch === true ||
-            (typeof data.scope.branch === "object" &&
-              data.scope.branch.includes(qualifier.branch))
-          ) {
+        if (data.scope.groups === false && (req.body.usertype === 'faculty' || (data.scope.batch === true || (typeof data.scope.batch === "object" && data.scope.batch.includes(qualifier.batch))))) {
+          
+          if (data.scope.branch === true || (typeof data.scope.branch === "object" && data.scope.branch.includes(qualifier.branch))) {
             data.postId = element.id;
             data.likes = data.likes.length;
             data.comments = data.comments.length;
             resData.push(data);
-            //
           }
-        } else if (
-          data.scope.branch === false &&
-          data.scope.batch === false &&
-          typeof data.scope.groups === "object"
-        ) {
-          if (
-            data.scope.groups.some((v) => qualifier.groups.indexOf(v) !== -1)
-          ) {
+        } else if (data.scope.branch === false && data.scope.batch === false && typeof data.scope.groups === "object") {
+          if (data.scope.groups.some((v) => qualifier.groups.indexOf(v) !== -1)) {
             data.postId = element.id;
             data.likes = data.likes.length;
             data.comments = data.comments.length;
             resData.push(data);
           }
         }
-        //else
       }
     });
     console.log(resData);
