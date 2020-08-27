@@ -2,8 +2,8 @@ const express = require('express');
 const parser = require('body-parser');
 const firebase = require('firebase');
 
-const db = require('../auth/app');
-const middleware = require('../auth/authorization');
+const db = require('../../auth/app');
+const middleware = require('../../auth/authorization');
 
 const facultyRouter = express.Router();
 facultyRouter.use(parser.json());

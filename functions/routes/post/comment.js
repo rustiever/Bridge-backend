@@ -1,17 +1,17 @@
 const commentRouter = require('express').Router();
 const firebase = require('firebase');
 
-const db = require('../../app');
-const middleware = require('../auth/middleware');
+const db = require('../../auth/app');
+const middleware = require('../../auth/authorization');
 
-commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async ( req, res, next) => {
+commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
-        if(!req.body.name || !req.body.data){
+        if (!req.body.name || !req.body.data) {
             let err = new Error('Invalid Body');
             return res.status(400).send(err.toString());
         }
-        const docRef = await db.collection('posts').doc(req.body.postId);
-        if(!(await docRef.get()).exists){
+        const docRef = await db.collection('feeds').doc(req.body.postId);
+        if (!(await docRef.get()).exists) {
             return res.status(204).send('No post data available');
         }
         var obj = {};
@@ -21,14 +21,10 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
         obj.usertype = req.usertype;
         obj.time = firebase.firestore.Timestamp.now();
 
-        // var resObj = {};
-        // const valId = firebase.firestore.Timestamp.now();
-
-        // resObj[valId] = obj;
-        
         await docRef.update({
-            comments : firebase.firestore.FieldValue.arrayUnion(obj)
+            comments: firebase.firestore.FieldValue.arrayUnion(obj)
         });
+        
         return res.status(200).send('done');
     } catch (err) {
         return res.send(err.toString());

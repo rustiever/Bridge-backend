@@ -2,13 +2,20 @@ const registerRouter = require('express').Router();
 const jwt = require('jsonwebtoken');
 const firebase = require('firebase');
 
-const db = require('../auth/app');
-const middleware = require('../auth/authorization');
-const secret = require('../auth/config');
+const db = require('../../auth/app');
+const middleware = require('../../auth/authorization');
+const secret = require('../../auth/config');
 
-registerRouter.post('/', middleware.validateUser, middleware.findUser, middleware.addUser, async ( req, res) => {
+registerRouter.post('/', middleware.validateUser, middleware.findUser, middleware.addUser, async (req, res) => {
     try {
-        const jsonwebtoken = await jwt.sign({ id: req.uid, user: req.body.usertype }, secret.AuthSecret(req.uid));
+        let usrtyp;
+        if (req.body.usertype === 101) usrtyp = 'faculty';
+        else if (req.body.usertype === 202) usrtyp = 'student';
+        else usrtyp = 'alumni';
+        
+        req.userData.usertype = usrtyp;
+
+        const jsonwebtoken = await jwt.sign({ id: req.uid, user: usrtyp }, secret.AuthSecret(req.uid));
         req.userData.token = [jsonwebtoken];
 
         const docRef = db.collection('users').doc(req.uid);
@@ -34,7 +41,7 @@ registerRouter.post('/', middleware.validateUser, middleware.findUser, middlewar
             finalData.usn = userData.usn;
             finalData.batch = userData.batch;
         }
-        else{
+        else {
             //Alumni User...
         }
 
