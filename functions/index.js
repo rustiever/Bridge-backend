@@ -11,10 +11,13 @@ const userLogin = require('./routes/login');
 const userLogout = require('./routes/logout');
 
 
+//POST FEED Section...
+const likeRouter = require('./routes/post/like');
+
 //Anonymous API Routers...
 const anonymousRouter = require('./routes/publicHome');
 //const facultyDetailsRouter = require('./routes/facultyDetails');
-
+//n8wUfwuJEkjCoDT7B3mp
 
 //Faculty API Routers...
 // const facultyHomeRouter = require('./faculty/routes/home');
@@ -36,25 +39,33 @@ const anonymousRouter = require('./routes/publicHome');
 
 
 //EXPRESS APPs Section...
-const faculty = express();
-const student = express();
+// const faculty = express();
+// const student = express();
 const anonymous = express();
 const auth = express();
+const postFeed = express();
 
 
 //Middlewares for EXPRESS-APP Section...
-faculty.use(cors({ origin: true }));
-faculty.use(parser.json());
-faculty.use(fileMiddleware);
+// faculty.use(cors({ origin: true }));
+// faculty.use(parser.json());
+// faculty.use(fileMiddleware);
 
-student.use(cors({ origin: true }));
-student.use(parser.json());
+// student.use(cors({ origin: true }));
+// student.use(parser.json());
 
 anonymous.use(cors({ origin: true }));
 anonymous.use(parser.json());
 
 auth.use(cors({ origin: true }));
 auth.use(parser.json());
+
+postFeed.use(cors({ origin: true }));
+postFeed.use(parser.json());
+
+
+//Anonymous Users API call section...
+anonymous.use('/home', anonymousRouter);
 
 
 //Auth Section...
@@ -63,9 +74,8 @@ auth.use('/login', userLogin);
 auth.use('/logout', userLogout);
 //anonymous.use('/api/faculties', facultyDetailsRouter);
 
-
-//Anonymous Users API call section...
-anonymous.use('/home', anonymousRouter);
+//Post Feeds...
+postFeed.use('/like', likeRouter);
 
 
 //Faculties API call section..
@@ -88,7 +98,8 @@ anonymous.use('/home', anonymousRouter);
 
 
 //Cloud Functions Section...
-exports.faculty = functions.https.onRequest(faculty);
-exports.student = functions.https.onRequest(student);
+// exports.faculty = functions.https.onRequest(faculty);
+// exports.student = functions.https.onRequest(student);
 exports.anonymous = functions.https.onRequest(anonymous);
 exports.auth = functions.https.onRequest(auth);
+exports.postFeed = functions.https.onRequest(postFeed);
