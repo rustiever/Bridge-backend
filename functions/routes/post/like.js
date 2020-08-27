@@ -4,7 +4,7 @@ const firebase = require('firebase');
 const db = require('../../auth/app');
 const middleware = require('../../auth/authorization');
 
-likeRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res, next) => {
+likeRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
         const docRef = await db.collection('feeds').doc(req.body.postId);
         const resData = await docRef.get();

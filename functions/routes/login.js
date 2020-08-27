@@ -12,8 +12,13 @@ facultyRouter.use(parser.json());
 
 facultyRouter.post('/', middleware.validateToken, middleware.checkId, async (req, res) => {
     try {
+        let usrtyp;
+        if (req.body.usertype === 101) usrtyp = 'faculty';
+        else if (req.body.usertype === 202) usrtyp = 'student';
+        else usrtyp = 'alumni';
+
         const docRef = db.collection('users').doc(req.uid);
-        const jsonwebtoken = await jwt.sign({ id: req.uid, user: req.body.usertype }, secret.AuthSecret(req.uid));
+        const jsonwebtoken = await jwt.sign({ id: req.uid, user: usrtyp }, secret.AuthSecret(req.uid));
         await docRef.update({
             token: firebase.firestore.FieldValue.arrayUnion(jsonwebtoken)
         });

@@ -13,6 +13,8 @@ const userLogout = require('./routes/logout');
 
 //POST FEED Section...
 const likeRouter = require('./routes/post/like');
+const commentRouter = require('./routes/post/comment');
+const getCommentsRouter = require('./routes/post/getComments');
 
 //Anonymous API Routers...
 const anonymousRouter = require('./routes/publicHome');
@@ -21,6 +23,7 @@ const anonymousRouter = require('./routes/publicHome');
 
 //Faculty API Routers...
 const facultyHomeRouter = require('./faculty/routes/home');
+// const getCommentRouter = require("./routes/post/getComments");
 // const facultyProfileRouter = require('./faculty/routes/profile');
 // const facultyUploadRouter = require('./faculty/routes/uploader');
 // const facultyPostRouter = require('./faculty/routes/post');
@@ -76,25 +79,20 @@ auth.use('/logout', userLogout);
 
 //Post Feeds...
 postFeed.use('/like', likeRouter);
-
+postFeed.use('/comment', commentRouter);
+postFeed.use('/getComments', getCommentsRouter);
 
 //Faculties API call section..
 faculty.use('/home', facultyHomeRouter);
 // faculty.use('/profile', facultyProfileRouter);
 // faculty.use('/upload', facultyUploadRouter);
 // faculty.use('/post', facultyPostRouter);
-// faculty.use('/like', facultyLikeRouter);
 // faculty.use('/bookmark', facultySaveRouter);
-// faculty.use('/comment', facultyCommentRouter);
-// faculty.use('/getComments', facultyGetCommentRouter);
 
 
 //Student API call section...
 // student.use('/home', studentHomeRouter);
-// student.use('/like', studentLikeRouter);
 // student.use('/bookmark', studentSaveRouter);
-// student.use('/comment', studentCommentRouter);
-// student.use('/getComments', studentGetCommentRouter);
 
 
 //Cloud Functions Section...
