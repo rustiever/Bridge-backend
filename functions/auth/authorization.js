@@ -114,7 +114,6 @@ module.exports.addUser = async (req, res, next) => {
                 photoURL: req.photo,
                 bookmarks: listval,
                 likedPosts: listval,
-                usertype: req.body.usertype,
                 groups: listval,
                 posts: listval
             };

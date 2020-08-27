@@ -6,15 +6,17 @@ const fileMiddleware = require('express-multipart-file-parser');
 
 
 //Auth Section...
-const userRegister = require('./routes/register');
-const userLogin = require('./routes/login');
-const userLogout = require('./routes/logout');
+const userRegister = require('./routes/auth/register');
+const userLogin = require('./routes/auth/login');
+const userLogout = require('./routes/auth/logout');
 
 
 //POST FEED Section...
 const likeRouter = require('./routes/post/like');
 const commentRouter = require('./routes/post/comment');
 const getCommentsRouter = require('./routes/post/getComments');
+const saveRouter = require('./routes/post/bookmark');
+
 
 //Anonymous API Routers...
 const anonymousRouter = require('./routes/publicHome');
@@ -23,22 +25,14 @@ const anonymousRouter = require('./routes/publicHome');
 
 //Faculty API Routers...
 const facultyHomeRouter = require('./faculty/routes/home');
-// const getCommentRouter = require("./routes/post/getComments");
 // const facultyProfileRouter = require('./faculty/routes/profile');
 // const facultyUploadRouter = require('./faculty/routes/uploader');
 // const facultyPostRouter = require('./faculty/routes/post');
-// const facultyLikeRouter = require('./faculty/routes/like');
-// const facultySaveRouter = require('./faculty/routes/bookmark');
-// const facultyCommentRouter = require('./faculty/routes/comment');
-// const facultyGetCommentRouter = require('./faculty/routes/getComments');
+
 
 
 //Student API Routers..
 // const studentHomeRouter = require('./student/routes/home');
-// const studentLikeRouter = require('./student/routes/like');
-// const studentSaveRouter = require('./student/routes/bookmark');
-// const studentCommentRouter = require('./student/routes/comment');
-// const studentGetCommentRouter = require('./student/routes/getComments');
 
 
 //EXPRESS APPs Section...
@@ -81,18 +75,17 @@ auth.use('/logout', userLogout);
 postFeed.use('/like', likeRouter);
 postFeed.use('/comment', commentRouter);
 postFeed.use('/getComments', getCommentsRouter);
+postFeed.use('/bookmark', saveRouter);
 
 //Faculties API call section..
 faculty.use('/home', facultyHomeRouter);
 // faculty.use('/profile', facultyProfileRouter);
 // faculty.use('/upload', facultyUploadRouter);
 // faculty.use('/post', facultyPostRouter);
-// faculty.use('/bookmark', facultySaveRouter);
 
 
 //Student API call section...
 // student.use('/home', studentHomeRouter);
-// student.use('/bookmark', studentSaveRouter);
 
 
 //Cloud Functions Section...
