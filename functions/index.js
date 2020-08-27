@@ -20,7 +20,7 @@ const anonymousRouter = require('./routes/publicHome');
 //n8wUfwuJEkjCoDT7B3mp
 
 //Faculty API Routers...
-// const facultyHomeRouter = require('./faculty/routes/home');
+const facultyHomeRouter = require('./faculty/routes/home');
 // const facultyProfileRouter = require('./faculty/routes/profile');
 // const facultyUploadRouter = require('./faculty/routes/uploader');
 // const facultyPostRouter = require('./faculty/routes/post');
@@ -39,7 +39,7 @@ const anonymousRouter = require('./routes/publicHome');
 
 
 //EXPRESS APPs Section...
-// const faculty = express();
+const faculty = express();
 // const student = express();
 const anonymous = express();
 const auth = express();
@@ -79,7 +79,7 @@ postFeed.use('/like', likeRouter);
 
 
 //Faculties API call section..
-// faculty.use('/home', facultyHomeRouter);
+faculty.use('/home', facultyHomeRouter);
 // faculty.use('/profile', facultyProfileRouter);
 // faculty.use('/upload', facultyUploadRouter);
 // faculty.use('/post', facultyPostRouter);
@@ -98,7 +98,7 @@ postFeed.use('/like', likeRouter);
 
 
 //Cloud Functions Section...
-// exports.faculty = functions.https.onRequest(faculty);
+exports.faculty = functions.https.onRequest(faculty);
 // exports.student = functions.https.onRequest(student);
 exports.anonymous = functions.https.onRequest(anonymous);
 exports.auth = functions.https.onRequest(auth);
