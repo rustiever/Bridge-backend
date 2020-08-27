@@ -6,16 +6,16 @@ const db = require('../auth/app');
 const middleware = require('../auth/authorization');
 const secret = require('../auth/config');
 
-registerRouter.post('/', middleware.validateUser, middleware.findUser, middleware.addUser, async (req, res, next) => {
-    try{
-        const jsonwebtoken = await jwt.sign({id:req.uid, user : 'faculties'}, secret.AuthSecret(req.uid));
-        req.userData.token = [ jsonwebtoken ];
+registerRouter.post('/', middleware.validateUser, middleware.findUser, middleware.addUser, async ( req, res) => {
+    try {
+        const jsonwebtoken = await jwt.sign({ id: req.uid, user: req.body.usertype }, secret.AuthSecret(req.uid));
+        req.userData.token = [jsonwebtoken];
 
-        const docRef = db.collection('faculties').doc(req.uid);
+        const docRef = db.collection('users').doc(req.uid);
         await docRef.set(req.userData);
-        
+
         let result = await docRef.get();
-        
+
         var obj = {};
         var finalData = {};
         var userData = result.data();
@@ -24,15 +24,25 @@ registerRouter.post('/', middleware.validateUser, middleware.findUser, middlewar
         finalData.name = userData.name;
         finalData.email = userData.email;
         finalData.photoUrl = userData.photoURL;
-        finalData.phone = userData.phone;
-        finalData.facultyId = userData.facultyId;
         finalData.branch = userData.branch;
+
+        if (req.body.usertype === 101) {
+            finalData.phone = userData.phone;
+            finalData.facultyId = userData.facultyId;
+        }
+        else if (req.body.usertype === 202) {
+            finalData.usn = userData.usn;
+            finalData.batch = userData.batch;
+        }
+        else{
+            //Alumni User...
+        }
 
         obj.userData = finalData;
         obj.authorizeToken = jsonwebtoken;
 
         return res.status(201).json(obj);
-    }catch(err){
+    } catch (err) {
         return res.send(err);
     }
 });
