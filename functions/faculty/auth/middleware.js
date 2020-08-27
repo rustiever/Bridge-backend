@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const secret = require("./facconfig");
-const db = require("../../app");
+const db = require("../../auth/app");
 
 // function idValidation(facultyId){
 //     let l = facultyId.length;
