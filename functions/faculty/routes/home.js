@@ -38,6 +38,7 @@ homeRoute.get("/", async (req, res, next) => {
       let postsRef;
       // eslint-disable-next-line no-await-in-loop
       if (!time) { 
+        // eslint-disable-next-line no-await-in-loop
         postsRef = await db.collection("posts").orderBy("timeStamp", 'desc').limit(limit).get(); 
         
         console.log(postsRef.docs.length.toString() + 'how');
