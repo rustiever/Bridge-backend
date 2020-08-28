@@ -12,28 +12,31 @@ getCommentRouter.post('/', middleware.checkPost, middleware.checkToken, middlewa
         if (!resData.exists) {
             return res.status(204).send('No post data available');
         }
-
-        const commentRef = await docRef.collection('comments').get();
         let commentData = [];
 
+        const commentRef = await docRef.collection('comments').orderBy('time', 'desc').limit(20).get();
+
+        if (commentRef.empty) {
+            return res.status(200).send('No comments are available');
+        }
+
         commentRef.forEach(element => {
-            let data = element.data().comment;
-            data.forEach(ele => {
-                var obj = {};
+            let data = element.data();
+            var obj = {};
 
-                obj.time = ele.time;
-                obj.data = ele.data;
-                obj.usertype = ele.usertype;
-                obj.userId = element.id;
-                obj.edited = ele.edited;
+            obj.id = element.id;
+            obj.time = data.time;
+            obj.data = data.data;
+            obj.usertype = data.usertype;
+            obj.userId = data.UserId;
+            obj.edited = data.edited;
 
-                if (element.id === req.uid) obj.name = 'You';
-                else obj.name = ele.username;
+            if (data.userId === req.uid) obj.name = 'You';
+            else obj.name = data.username;
 
-                commentData.push(obj);
-            });
+            commentData.push(obj);
         });
-        commentData.sort((a, b) => (a.time.seconds < b.time.seconds && a.time.nanoseconds < b.time.nanoseconds) ? 1 : ((b.time.seconds < a.time.seconds) ? -1 : 0));
+        // commentData.sort((a, b) => (a.time.seconds < b.time.seconds && a.time.nanoseconds < b.time.nanoseconds) ? 1 : ((b.time.seconds < a.time.seconds) ? -1 : 0));
 
         return res.status(200).send(commentData);
     } catch (err) {

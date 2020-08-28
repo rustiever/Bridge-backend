@@ -22,7 +22,8 @@ anonymousRouter.get('/', async ( _req, res) => {
                 ownerPhotoUrl: d.ownerPhotoUrl,
                 ownerUid: d.ownerUid,
                 timeStamp: d.timeStamp.seconds,
-                comments: (d.comments).length
+                scope : d.scope,
+                comments: d.comlen
             });
         });
         //Give the object name as feedData in the result...

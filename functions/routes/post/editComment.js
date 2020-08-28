@@ -12,25 +12,27 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
         }
 
         const docRef = await db.collection('feeds').doc(req.body.postId);
+
         if (!(await docRef.get()).exists) {
             return res.status(204).send('No post data available');
         }
 
-        const commentRef = await docRef.collection('comments').doc(req.uid);
+        const commentRef = docRef.collection('comments').doc(req.body.commentId);
         const commentData = await commentRef.get();
 
         if (!commentData.exists) {
             return res.status(204).send('No comment data available');
         }
 
-        let comments = commentData.data().comment;
+        let comment = commentData.data();
 
-        let com = comments.find(x => x.time.seconds === req.body.commentId.seconds && x.time.nanoseconds === req.body.commentId.nanoseconds);
-        com.data = req.body.data;
-        com.edited = true;
-        
+        if (comment.userId !== req.uid) {
+            return res.status(404).send('You have no previlage to edit this comment');
+        }
+
         await commentRef.update({
-            comment: comments
+            edited: true,
+            data: req.body.data
         });
 
         return res.status(200).send('done');

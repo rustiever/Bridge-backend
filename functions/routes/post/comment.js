@@ -10,36 +10,28 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
             let err = new Error('Invalid Body');
             return res.status(400).send(err.toString());
         }
-        const docRef = await db.collection('feeds').doc(req.body.postId);
+
+        const docRef = db.collection('feeds').doc(req.body.postId);
+
         if (!(await docRef.get()).exists) {
             return res.status(204).send('No post data available');
         }
 
-        const commentRef = await docRef.collection('comments').doc(req.uid);
-        
-        if((await commentRef.get()).exists){
-            await commentRef.update({
-                comment : firebase.firestore.FieldValue.arrayUnion({
-                data: req.body.data,
-                username: req.body.name,
-                userType: req.usertype,
-                time: firebase.firestore.Timestamp.now(),
-                edited: false
-                })
-            });
-        }
-        else
-        {
-        await commentRef.set({
-            comment : [{
+        const commentRef = await docRef.collection('comments');
+
+        await commentRef.doc().set({
+            userId: req.uid,
             data: req.body.data,
             username: req.body.name,
             userType: req.usertype,
             time: firebase.firestore.Timestamp.now(),
             edited: false
-            }]
         });
-        }
+        let c = (await commentRef.get()).size;
+        await docRef.update({
+            comlen : c
+        });
+
         return res.status(200).send('done');
     } catch (err) {
         return res.send(err.toString());

@@ -18,6 +18,8 @@ const getCommentsRouter = require('./routes/post/getComments');
 const saveRouter = require('./routes/post/bookmark');
 const editCommentRouter = require('./routes/post/editComment');
 const deleteCommentRouter = require('./routes/post/deleteComment');
+const userDetailsRouter = require('./routes/userdetails');
+const doPostRouter = require('./routes/post/post');
 
 
 //Anonymous API Routers...
@@ -80,7 +82,9 @@ postFeed.use('/getComments', getCommentsRouter);
 postFeed.use('/bookmark', saveRouter);
 postFeed.use('/editComment', editCommentRouter);
 postFeed.use('/deleteComment', deleteCommentRouter);
+postFeed.use('/post', doPostRouter);
 
+postFeed.use('/userDetails', userDetailsRouter);
 //Faculties API call section..
 // faculty.use('/home', facultyHomeRouter);
 // faculty.use('/profile', facultyProfileRouter);
@@ -97,4 +101,4 @@ postFeed.use('/deleteComment', deleteCommentRouter);
 // exports.student = functions.https.onRequest(student);
 exports.anonymous = functions.https.onRequest(anonymous);
 exports.auth = functions.https.onRequest(auth);
-exports.postFeed = functions.https.onRequest(postFeed);
+exports.home = functions.https.onRequest(postFeed);
