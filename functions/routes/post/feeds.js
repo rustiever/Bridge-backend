@@ -4,14 +4,14 @@ const firebase = require("firebase");
 const db = require("../../auth/app");
 const middleware = require("../../auth/authorization");
 
-function findBranch(branch){
+function findBranch(branch) {
     let b;
 }
 // need to check edge cases like end of the documents
-homeRoute.post("/", async (req, res) => {
-    const limit = 15;
+homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res) => {
+    const limit = 2;
     try {
-        if(!req.body.userScope){
+        if (!req.body.userScope) {
             return res.status(404).send('Invalid Request');
         }
         var con = true;
@@ -36,7 +36,7 @@ homeRoute.post("/", async (req, res) => {
         let time;
         if (req.body.time) {
             const t = req.body.time;
-            time = new firebase.firestore.Timestamp(t.seconds,t.nanoseconds);
+            time = new firebase.firestore.Timestamp(t.seconds, t.nanoseconds);
         }
         else {
             time = null;
@@ -84,35 +84,64 @@ homeRoute.post("/", async (req, res) => {
             console.log(time);
             postsRef.forEach(element => {
                 let data = element.data();
+                let resultData = {};
                 if (typeof data.scope === "boolean" && data.scope === false) {
-                    data.postId = element.id;
-                    data.likes = data.likes.length;
-                    data.comments = data.comlen;
-                    resData.push(data);
+
+                    resultData.postId = element.id;
+                    resultData.likes = data.likes.length;
+                    resultData.comments = data.comlen;
+                    resultData.caption = data.caption;
+                    resultData.scope = data.scope;
+                    resultData.photoUrl = data.photoUrl;
+                    resultData.usertype = data.usertype;
+                    resultData.ownerName = data.ownerName;
+                    resultData.ownerPhotoUrl = data.ownerPhotoUrl;
+                    resultData.ownerId = data.ownerId;
+                    resultData.timeStamp = data.timeStamp;
+
+                    resData.push(resultData);
                 }
                 else {
                     if (data.scope.groups === false && (req.body.usertype === 'faculty' || (data.scope.batch === true || (typeof data.scope.batch === "object" && data.scope.batch.includes(qualifier.batch))))) {
 
                         if (data.scope.branch === true || (typeof data.scope.branch === "object" && data.scope.branch.includes(qualifier.branch))) {
-                            data.postId = element.id;
-                            data.likes = data.likes.length;
-                            data.comments = data.comlen;
-                            resData.push(data);
+
+                            resultData.postId = element.id;
+                            resultData.likes = data.likes.length;
+                            resultData.comments = data.comlen;
+                            resultData.caption = data.caption;
+                            resultData.scope = data.scope;
+                            resultData.photoUrl = data.photoUrl;
+                            resultData.usertype = data.usertype;
+                            resultData.ownerName = data.ownerName;
+                            resultData.ownerPhotoUrl = data.ownerPhotoUrl;
+                            resultData.ownerId = data.ownerId;
+                            resultData.timeStamp = data.timeStamp;
+
+                            resData.push(resultData);
                         }
                     } else if (data.scope.branch === false && data.scope.batch === false && typeof data.scope.groups === "object") {
                         if (data.scope.groups.some((v) => qualifier.groups.indexOf(v) !== -1)) {
-                            data.postId = element.id;
-                            data.likes = data.likes.length;
-                            data.comments = data.commlen;
-                            resData.push(data);
+
+                            resultData.postId = element.id;
+                            resultData.likes = data.likes.length;
+                            resultData.comments = data.comlen;
+                            resultData.caption = data.caption;
+                            resultData.scope = data.scope;
+                            resultData.photoUrl = data.photoUrl;
+                            resultData.usertype = data.usertype;
+                            resultData.ownerName = data.ownerName;
+                            resultData.ownerPhotoUrl = data.ownerPhotoUrl;
+                            resultData.ownerId = data.ownerId;
+                            resultData.timeStamp = data.timeStamp;
+
+                            resData.push(resultData);
                         }
                     }
                 }
             });
-            // console.log(resData)
             count--;
         }
-        console.log(time);
         return res.status(200).send({
             lastTime: time,
             feedData: resData

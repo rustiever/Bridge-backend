@@ -20,6 +20,7 @@ const editCommentRouter = require('./routes/post/editComment');
 const deleteCommentRouter = require('./routes/post/deleteComment');
 // const userDetailsRouter = require('./routes/userdetails');
 const doPostRouter = require('./routes/post/post');
+const deletePostRouter = require('./routes/post/delPost');
 
 //Anonymous API Routers...
 const anonymousRouter = require('./routes/publicHome');
@@ -63,8 +64,9 @@ postFeed.use('/bookmark', saveRouter);
 postFeed.use('/editComment', editCommentRouter);
 postFeed.use('/deleteComment', deleteCommentRouter);
 postFeed.use('/post', doPostRouter);
+postFeed.use('/deletePost', deletePostRouter);
 
-postFeed.use('/userDetails', userDetailsRouter);
+// postFeed.use('/userDetails', userDetailsRouter);
 
 //Cloud Functions Section...
 exports.anonymous = functions.https.onRequest(anonymous);
