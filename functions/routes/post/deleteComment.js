@@ -17,39 +17,15 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
             return res.status(204).send('No post data available');
         }
 
-        const commentRef = await docRef.collection('comments').doc(req.uid);
-        const commentData = await commentRef.get();
+        const commentRef = await docRef.collection('comments').doc(req.body.commentId);
 
-        if (!commentData.exists) {
-            return res.status(204).send('No comment data available');
+        if (!(await commentRef.get()).exists) {
+            return res.status(200).send('Comment data not available');
         }
 
-        let comments = commentData.data().comment;
-        let len = comments.length;
+        await commentRef.delete();
 
-        if (len === 0) {
-            await commentRef.delete();
-            return res.status(204).send('No comment data available');
-        }
-        else if (len === 1) {
-            await commentRef.delete();
-        }
-        else {
-
-            let com = comments.find(x => x.time.seconds === req.body.commentId.seconds && x.time.nanoseconds === req.body.commentId.nanoseconds);
-            const index = comments.indexOf(com);
-
-            if (index > -1)
-                comments.splice(index, 1);
-            else
-                return res.status(204).send('No comment data available');
-
-            await commentRef.update({
-                comment: comments
-            });
-        }
-
-        return res.status(200).send('done');
+        return res.status(200).send({ comments: (await docRef.collection('comments').get()).size });
     } catch (err) {
         return res.send(err.toString());
     }
