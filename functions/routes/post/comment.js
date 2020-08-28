@@ -29,10 +29,10 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
         });
         let c = (await commentRef.get()).size;
         await docRef.update({
-            comlen : c
+            comlen: c
         });
 
-        return res.status(200).send('done');
+        return res.status(200).send({ comments: c });
     } catch (err) {
         return res.send(err.toString());
     }

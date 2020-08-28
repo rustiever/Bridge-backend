@@ -92,22 +92,6 @@ homeRoute.get("/", async (req, res, next) => {
       // console.log(resData)
     }
     return res.status(200).send(resData);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   } catch (err) {
     return res.send(err.toString());
   }
