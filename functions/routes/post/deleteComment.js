@@ -25,7 +25,12 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
 
         await commentRef.delete();
 
-        return res.status(200).send({ comments: (await docRef.collection('comments').get()).size });
+        let c = (await docRef.collection('comments').get()).size;
+        await docRef.update({
+            comlen: c
+        });
+
+        return res.status(200).send({ comments: c });
     } catch (err) {
         return res.send(err.toString());
     }
