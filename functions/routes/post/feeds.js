@@ -6,15 +6,30 @@ const middleware = require("../../auth/authorization");
 
 function findBranch(branch) {
     let b;
+    switch (branch.toUpperCase()) {
+        case "COMPUTER SCIENCE AND ENGINEERING": b = 'CS'; break;
+        case "INFORMATION SCIENCE AND ENGINEERING": b = 'IS'; break;
+        case "MECHANICAL ENGINEERING": b = 'ME'; break;
+        case "CIVIL ENGINEERING": b = 'CV'; break;
+        case "ELECTRONICS AND COMMUNICATION ENGINEERING": b = 'EC'; break;
+        case "MECHATRONICS ENGINEERING": b = 'MT'; break;
+        case "AERONAUTICAL ENGINEERING": b = 'AE'; break;
+        default: b = 'CS'; break;
+    }
+    return b;
 }
 // need to check edge cases like end of the documents
 homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res) => {
-    const limit = 2;
     try {
+        const limit = 25;
+        let time;
+        let count = 25;
+        var resData = [];
+        const con = true;
+
         if (!req.body.userScope) {
             return res.status(404).send('Invalid Request');
         }
-        var con = true;
         // const qualifier = {
         //     branch: "CS",
         //     batch: 2017,
@@ -31,9 +46,9 @@ homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req
         //         "jjj",
         //     ],
         // };
-        const qualifier = req.body.userScope;
-        var resData = [];
-        let time;
+        var qualifier = req.body.userScope;
+        qualifier.branch = findBranch(qualifier.branch);
+
         if (req.body.time) {
             const t = req.body.time;
             time = new firebase.firestore.Timestamp(t.seconds, t.nanoseconds);
@@ -41,11 +56,10 @@ homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req
         else {
             time = null;
         }
-        let count = 25;
 
         while (con) {
 
-            if (count <= 0 && resData.length>5) {
+            if (count <= 0 && resData.length > 5) {
                 console.log('After no data it returned for some time');
                 break;
             }
