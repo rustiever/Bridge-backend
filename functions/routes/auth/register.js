@@ -32,6 +32,7 @@ registerRouter.post('/', middleware.validateUser, middleware.findUser, middlewar
         finalData.email = userData.email;
         finalData.photoUrl = userData.photoURL;
         finalData.branch = userData.branch;
+        finalData.groups = userData.groups;
 
         if (req.body.usertype === 101) {
             finalData.phone = userData.phone;

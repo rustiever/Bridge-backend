@@ -45,7 +45,7 @@ homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req
 
         while (con) {
 
-            if (count === 0) {
+            if (count <= 0 && resData.length>5) {
                 console.log('After no data it returned for some time');
                 break;
             }
