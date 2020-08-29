@@ -21,7 +21,7 @@ function findBranch(branch) {
 // need to check edge cases like end of the documents
 homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
-        const limit = 25;
+        const limit = 5;
         let time;
         let count = 25;
         var resData = [];
