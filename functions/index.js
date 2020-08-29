@@ -68,7 +68,6 @@ postFeed.use('/deletePost', deletePostRouter);
 
 // postFeed.use('/userDetails', userDetailsRouter);
 
-
 //Cloud Functions Section...
 exports.anonymous = functions.https.onRequest(anonymous);
 exports.auth = functions.https.onRequest(auth);
