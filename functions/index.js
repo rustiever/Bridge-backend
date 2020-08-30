@@ -5,6 +5,9 @@ const cors = require("cors");
 
 
 //Routers Section...
+//Profile Section...
+const profileRouter = require('./routes/profile/profile');
+
 //Auth Section...
 const userRegister = require('./routes/auth/register');
 const userLogin = require('./routes/auth/login');
@@ -30,6 +33,7 @@ const anonymousRouter = require('./routes/publicHome');
 const anonymous = express();
 const auth = express();
 const postFeed = express();
+const user = express();
 
 //Middleware Section...
 //For Anonymous User
@@ -44,6 +48,9 @@ auth.use(parser.json());
 postFeed.use(cors({ origin: true }));
 postFeed.use(parser.json());
 
+//For User APIs
+user.use(cors({ origin: true }));
+user.use(parser.json());
 
 //Anonymous Users API call section...
 anonymous.use('/home', anonymousRouter);
@@ -66,9 +73,13 @@ postFeed.use('/deleteComment', deleteCommentRouter);
 postFeed.use('/post', doPostRouter);
 postFeed.use('/deletePost', deletePostRouter);
 
+//Profile Section...
+user.use('/profile', profileRouter);
+
 // postFeed.use('/userDetails', userDetailsRouter);
 
 //Cloud Functions Section...
 exports.anonymous = functions.https.onRequest(anonymous);
 exports.auth = functions.https.onRequest(auth);
 exports.home = functions.https.onRequest(postFeed);
+exports.user = functions.https.onRequest(user);
