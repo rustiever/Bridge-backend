@@ -22,9 +22,11 @@ postRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (re
         obj.usertype = req.usertype;
         obj.timeStamp = firebase.firestore.Timestamp.now();
 
-        const docRef = await db.collection('feeds').doc();
+        const docRef = db.collection('feeds').doc();
         await docRef.set(obj);
-        
+
+        await db.collection('users').doc(req.uid).update({ posts: firebase.firestore.FieldValue.arrayUnion(docRef.id) });
+
         return res.status(200).json({ postId: docRef.id });
     }
     catch (err) {

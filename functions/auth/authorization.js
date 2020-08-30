@@ -45,6 +45,7 @@ module.exports.authorizeToken = async (req, res, next) => {
         const docData = (await docRef.get()).data();
         const userToken = docData.token;
         if (userToken.includes(req.token)) {
+            req.userValidData = docData;
             return next();
         }
         let err = new Error('not valid user');
