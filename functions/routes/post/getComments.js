@@ -7,7 +7,7 @@ const middleware = require('../../auth/authorization');
 getCommentRouter.post('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
         //Set the limit value or number of comments fetching per request...
-        const limit = 25;
+        const limit = 5;
         let lasttime = null;
         let commentData = [];
         let commentRef;
@@ -28,7 +28,7 @@ getCommentRouter.post('/', middleware.checkPost, middleware.checkToken, middlewa
         }
 
         if (commentRef.empty) {
-            return res.status(200).send('No comments are available');
+            return res.status(200).send({ lastTime: lasttime, commentData: [] });
         }
 
         let last = commentRef.docs[commentRef.docs.length - 1];

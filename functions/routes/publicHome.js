@@ -9,7 +9,7 @@ anonymousRouter.post('/', async (req, res) => {
         //Change the limit value according to Your Requirement...
         const limit = 5;
         let docsRef;
-        let lasttime;
+        let lasttime = null;
         var result = {};
         var obj = [];
 
@@ -23,7 +23,10 @@ anonymousRouter.post('/', async (req, res) => {
         }
 
         if (docsRef.empty) {
-            return res.status(204).send('No content');
+            return res.status(200).json({
+                lastTime: lasttime,
+                feedData: []
+            });
         }
         let last = docsRef.docs[docsRef.docs.length - 1];
 
