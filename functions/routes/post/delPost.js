@@ -6,9 +6,8 @@ const middleware = require('../../auth/authorization');
 
 postRouter.post('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
-        if (!req.userValidData.posts.includes(req.body.postId)) {
-            return res.status(404).send("Not AUthorized");
-        }
+        //We also have to delete the postID from the users document in the like and bookmarks field, in the future step...
+
         const docRef = db.collection('feeds').doc(req.body.postId);
 
         if (!(await docRef.get()).exists) {
@@ -16,6 +15,9 @@ postRouter.post('/', middleware.checkPost, middleware.checkToken, middleware.aut
             return res.status(404).send(err.message);
         }
 
+        if (!req.userValidData.posts.includes(req.body.postId)) {
+            return res.status(404).send("Not AUthorized");
+        }
         const done = await docRef.collection('comments').get();
         if (done.empty) {
             await docRef.delete();
