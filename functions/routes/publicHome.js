@@ -10,7 +10,6 @@ anonymousRouter.post('/', async (req, res) => {
         const limit = 5;
         let docsRef;
         let lasttime = null;
-        var result = {};
         var obj = [];
 
         const collectionRef = db.collection('feeds');
@@ -50,11 +49,9 @@ anonymousRouter.post('/', async (req, res) => {
                 comments: data.comlen
             });
         });
-        //Give the object name as feedData in the result...
-        result.feedData = obj;
         return res.status(200).json({
             lastTime: lasttime,
-            feedData: result
+            feedData: obj
         });
     } catch (err) {
         return res.send(err.toString());
