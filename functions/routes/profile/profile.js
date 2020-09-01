@@ -127,7 +127,7 @@ profileRouter.post('/', middleware.checkToken, middleware.authorizeToken, async 
         }
 
         obj.data = resData;
-
+        
         return res.status(200).send({ lastTime: lastTime, profileData: obj });
     } catch (err) {
         return res.send(err.toString());

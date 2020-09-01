@@ -13,100 +13,40 @@ request body - 1 :
 	"userScope":{
             "branch": "Computer science and Engineering",
             "batch": 2017,
-            "groups": [
-                "cc",
-                "echo",
-                "ab",
-                "bc",
-                "abcd",
-                "bvv",
-                "fh",
-                "mk",
-                "klk",
-                "jjj"
-            ]
+            "groups": ["abcd","vv"]
         }
 }
 
 
-
-
-
-
-
-
 request body - 2 :
-{"time" :{
-        "seconds": 1598708945,
-        "nanoseconds": 25000000
-    },
-	"userScope":{
-            "branch": "Computer science and Engineering",
-            "batch": 2017,
-            "groups": [
-                "cc",
-                "echo",
-                "ab",
-                "bc",
-                "abcd",
-                "bvv",
-                "fh",
-                "mk",
-                "klk",
-                "jjj"
-            ]
-        }
-        }
-
-
-
-
-
-
-
+{   "time" :{"seconds": 1598708945,"nanoseconds": 25000000},
+	"userScope":{"branch": "Computer science and Engineering","batch": 2017,"groups": ["abcd","vv"]}
+}
 
 
 response body - 1:
 
 {
-    "lastTime": {
-        "seconds": 1598710757,
-        "nanoseconds": 441000000
-    },
+    "lastTime": {"seconds": 1598710757,"nanoseconds": 441000000},
     "feedData": [
         {
             "postId": "9Ncg5Hf0rqsXcHeKQOPA",
             "likes": 0,
             "comments": 0,
             "caption": "THIS IS A POST WITH NUMBER-1005",
-            "scope": {
-                "groups": [
-                    "abcd"
-                ],
-                "branch": false,
-                "batch": false
-            },
+            "scope": {"groups": ["abcd"],"branch": false,"batch": false},
             "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
             "usertype": "faculty",
             "ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710819,
-                "nanoseconds": 971000000
-            }
+            "timeStamp": {"seconds": 1598710819,"nanoseconds": 971000000}
         },
         {
             "postId": "rwfi7MoOGRz0UHpOy2lz",
             "likes": 0,
             "comments": 0,
             "caption": "THIS IS A POST WITH NUMBER-1004",
-            "scope": {
-                "groups": false,
-                "batch": true,
-                "branch": [
-                    "CS"
-                ]
-            },
+            "scope": {"groups": false,"batch": true,"branch": ["CS"]},
             "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
             "usertype": "faculty",
             "ownerName": "Sharan",
