@@ -22,7 +22,7 @@ likeRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.auth
             await userRef.update({
                 likedPosts: firebase.firestore.FieldValue.arrayRemove(req.body.postId)
             });
-            return res.status(200).send({ likes: likeData.length - 1 });
+            return res.status(200).json({ likes: likeData.length - 1 });
         }
         await docRef.update({
             likes: firebase.firestore.FieldValue.arrayUnion(req.uid)
@@ -30,7 +30,7 @@ likeRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.auth
         await userRef.update({
             likedPosts: firebase.firestore.FieldValue.arrayUnion(req.body.postId)
         });
-        return res.status(200).send({ likes: likeData.length + 1 });
+        return res.status(200).json({ likes: likeData.length + 1 });
     } catch (err) {
         return res.send(err.toString());
     }
