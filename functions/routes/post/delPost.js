@@ -6,8 +6,6 @@ const middleware = require('../../auth/authorization');
 
 postRouter.post('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
-        //We also have to delete the postID from the users document in the like and bookmarks field, in the future step...
-
         const docRef = db.collection('feeds').doc(req.body.postId);
 
         if (!(await docRef.get()).exists) {

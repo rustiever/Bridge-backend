@@ -7,6 +7,7 @@ const cors = require("cors");
 //Routers Section...
 //Profile Section...
 const profileRouter = require('./routes/profile/profile');
+const setProfileRouter = require('./routes/profile/setProfile');
 
 //Auth Section...
 const userRegister = require('./routes/auth/register');
@@ -75,6 +76,7 @@ postFeed.use('/deletePost', deletePostRouter);
 
 //Profile Section...
 user.use('/profile', profileRouter);
+user.use('/setProfile', setProfileRouter);
 
 // postFeed.use('/userDetails', userDetailsRouter);
 

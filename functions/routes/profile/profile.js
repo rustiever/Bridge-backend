@@ -3,7 +3,6 @@ const firebase = require('firebase');
 
 const db = require('../../auth/app');
 const middleware = require('../../auth/authorization');
-const { response } = require('express');
 
 profileRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
