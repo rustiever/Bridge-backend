@@ -16,7 +16,7 @@ getCommentRouter.post('/', middleware.checkPost, middleware.checkToken, middlewa
         const resData = await docRef.get();
 
         if (!resData.exists) {
-            return res.status(204).send('No post data available');
+            return res.status(404).send('No post data available');
         }
 
 

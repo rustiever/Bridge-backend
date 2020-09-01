@@ -9,11 +9,11 @@ likeRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.auth
         const docRef = await db.collection('feeds').doc(req.body.postId);
         const resData = await docRef.get();
         if (!resData.exists) {
-            return res.status(204).send('No data found');
+            return res.status(404).send('No POST data available');
         }
 
         let likeData = resData.data().likes;
-        const userRef = await db.collection('users').doc(req.uid);
+        const userRef = db.collection('users').doc(req.uid);
 
         if (likeData.includes(req.uid)) {
             await docRef.update({
@@ -22,7 +22,7 @@ likeRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.auth
             await userRef.update({
                 likedPosts: firebase.firestore.FieldValue.arrayRemove(req.body.postId)
             });
-            return res.status(200).send('Disliked The Post');
+            return res.status(200).send({ likes: likeData.length - 1 });
         }
         await docRef.update({
             likes: firebase.firestore.FieldValue.arrayUnion(req.uid)
@@ -30,7 +30,7 @@ likeRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.auth
         await userRef.update({
             likedPosts: firebase.firestore.FieldValue.arrayUnion(req.body.postId)
         });
-        return res.status(200).send('Liked The Post');
+        return res.status(200).send({ likes: likeData.length + 1 });
     } catch (err) {
         return res.send(err.toString());
     }

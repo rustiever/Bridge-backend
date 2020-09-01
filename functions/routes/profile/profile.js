@@ -3,7 +3,6 @@ const firebase = require('firebase');
 
 const db = require('../../auth/app');
 const middleware = require('../../auth/authorization');
-const { response } = require('express');
 
 profileRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
@@ -128,7 +127,7 @@ profileRouter.post('/', middleware.checkToken, middleware.authorizeToken, async 
         }
 
         obj.data = resData;
-
+        
         return res.status(200).send({ lastTime: lastTime, profileData: obj });
     } catch (err) {
         return res.send(err.toString());
