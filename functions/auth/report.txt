@@ -277,7 +277,7 @@ request body :
 
 Headers :
 
-Authorization : bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVsZ3pEa0dmY05iU3d6T0Y2cnBaVFFEelRxbjEiLCJ1c2VyIjoic3R1ZGVudCIsImlhdCI6MTU5OTQ4MDU3OH0.P4q6Fqy3XEje6aR8zNRaTdfs2T2_cRFM9Uxw1ngS8Go
+Authorization : bearer <token>
 
 response body :
 {}
