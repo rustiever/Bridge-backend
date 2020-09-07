@@ -6,7 +6,7 @@ const middleware = require('../../auth/authorization');
 
 commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
-        if (!req.body.commentId || !req.body.data) {
+        if (!req.body.commentId || !req.body.comment) {
             let err = new Error('Invalid Body');
             return res.status(400).send(err.toString());
         }
@@ -32,7 +32,7 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
 
         await commentRef.update({
             edited: true,
-            data: req.body.data
+            comment: req.body.comment
         });
 
         return res.status(200).send('done');
