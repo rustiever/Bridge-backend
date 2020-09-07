@@ -7,12 +7,15 @@ const middleware = require('../../auth/authorization');
 postRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
         var obj = {};
+
         if (req.body.caption) {
             obj.caption = req.body.caption.toString();
         }
+
         if (req.body.photoUrl) {
             obj.photoUrl = req.body.photoUrl.toString();
         }
+
         obj.ownerUid = req.uid;
         obj.ownerName = req.body.ownerName;
         obj.ownerPhotoUrl = req.body.ownerPhotoUrl;

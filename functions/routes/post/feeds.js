@@ -21,6 +21,7 @@ function findBranch(branch) {
 // need to check edge cases like end of the documents
 homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
+        
         const limit = 5;
         let time;
         let count = 25;
@@ -30,22 +31,7 @@ homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req
         if (!req.body.userScope) {
             return res.status(404).send('Invalid Request');
         }
-        // const qualifier = {
-        //     branch: "CS",
-        //     batch: 2017,
-        //     groups: [
-        //         "cc",
-        //         "echo",
-        //         "ab",
-        //         "bc",
-        //         "abcd",
-        //         "bvv",
-        //         "fh",
-        //         "mk",
-        //         "klk",
-        //         "jjj",
-        //     ],
-        // };
+
         var qualifier = req.body.userScope;
         qualifier.branch = findBranch(qualifier.branch);
 
@@ -88,14 +74,9 @@ homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req
                 break;
             }
 
-            // if( postsRef.docs.length < limit) {
-            //   console.log('why 90');
-            //   break;
-            // };
-
             let last = postsRef.docs[postsRef.docs.length - 1];
             time = last.data().timeStamp;
-            console.log(time);
+
             postsRef.forEach(element => {
                 let data = element.data();
                 let resultData = {};
@@ -154,6 +135,7 @@ homeRoute.post('/', middleware.checkToken, middleware.authorizeToken, async (req
                     }
                 }
             });
+
             count--;
         }
         return res.status(200).send({
