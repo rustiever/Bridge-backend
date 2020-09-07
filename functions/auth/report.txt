@@ -1,4 +1,4 @@
-Register User Feeds API :
+User's getting Feeds API :
 
 Method Type - [POST]
 
@@ -23,6 +23,9 @@ request body - 2 :
         "groups": ["abcd","vv"]
     }
 }
+
+Headers :
+Authorization : bearer <token>
 
 
 response body - 1:
@@ -185,18 +188,20 @@ User Register Section...
 Method Type : [POST]
 
 
-request body - 1 :
+request body - 1 : For Students
 
 {
-	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEyODA5ZGQyMzlkMjRiZDM3OWMwYWQxOTFmOGIwZWRjZGI5ZDM5MTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIFIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1FUC1MYU9BRnBkQS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BTVp1dWNucWRnNmxZUGY3UC1DUml1U3lZXzhiM1NNcWVBL3M5Ni1jL3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTgwMDYzODYsInVzZXJfaWQiOiJFbGd6RGtHZmNOYlN3ek9GNnJwWlRRRHpUcW4xIiwic3ViIjoiRWxnekRrR2ZjTmJTd3pPRjZycFpUUUR6VHFuMSIsImlhdCI6MTU5ODAwNjM4NiwiZXhwIjoxNTk4MDA5OTg2LCJlbWFpbCI6InNoYXJhbnJkdWRlQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE0MTQ2NTA1NDgyNDY4Mjg4NjY1Il0sImVtYWlsIjpbInNoYXJhbnJkdWRlQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.N7CeUtd0e1P83VmS7bfYD-iDWykgcYJhqJG3MbY4oJ3HdkRVRCvrC09sdBgi6R2XolygzRPfMZ8gnWJ80do8lI9VdxxwcBzJrRrq3m6nQFfxOYPTVabVupCiC91bOC-ElK38twfe5sVqh8G8ZchFqvcqN7m1l33no9zfyCKJWFMlOKMC3pKizGLr7maT",
-	"usertype":202,"email":"sharanrdude@gmail.com"
+	"token":<firebase-token>,
+    "usertype":202,
+    "email":"sharanrdude@gmail.com"
 }
 
-request body - 2 :
+request body - 2 : For Faculties
 
 {
-	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjU1NGE3NTQ3Nzg1ODdjOTRjMTY3M2U4ZWEyNDQ2MTZjMGMwNDNjYmMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdpT19tVXVUSWUtNHRRTUZ3Q0NOWjl5NVpJeUxfY2JtWVJJUnFwUnhFTT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTYwMzE4MTMsInVzZXJfaWQiOiJIM0tPcjB0cThXY2c1Y0s4SElZNkFlUlJaajczIiwic3ViIjoiSDNLT3IwdHE4V2NnNWNLOEhJWTZBZVJSWmo3MyIsImlhdCI6MTU5NjAzMTgxMywiZXhwIjoxNTk2MDM1NDEzLCJlbWFpbCI6InNoYXJhbm5lZWRlZEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMTc5MzQzMzI2MDA2MjczMTM2MSJdLCJlbWFpbCI6WyJzaGFyYW5uZWVkZWRAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.SGIZ0qe89CDr5NcpH2S5iOKxB9dK1fRDzAf_ChFVA8Vlc4y_g1gEf5q0ckRJmYCDmTcYV1d-8-d7PAK4fXNxw4lxfc7ymUB8YkMWO_1t-XjHWCIvc_-yOf6a3hjF5D4DmyrAYgbJJ78LWgsOXOlQtU-CEWVCNE02c2jUi9T01oNmSvphjYyuE4TIbXZI64sfuSPkhsepo8ZZF1Oy9xwKwCK_gqqY0ThCs1qIl",
-	"email":"sharanneeded@gmail.com","usertype":101
+	"token":<firebase-token>,
+    "email":"sharanneeded@gmail.com",
+    "usertype":101
 }
 
 
@@ -208,7 +213,7 @@ response body - 1 :
         "photoUrl": "https://lh4.googleusercontent.com/-EP-LaOAFpdA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnqdg6lYPf7P-CRiuSyY_8b3SMqeA/s96-c/photo.jpg",
         "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"usn": "4MT17CS000","batch": 2017
     },
-    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVsZ3pEa0dmY05iU3d6T0Y2cnBaVFFEelRxbjEiLCJ1c2VyIjoic3R1ZGVudCIsImlhdCI6MTU5OTQ3OTkzNH0.Oxgt2k3g2fD3i6o3rDd-smfBG6F3JEK1i9V0DaicOng"
+    "authorizeToken": <token>
 }
 
 response body - 2 :
@@ -219,7 +224,7 @@ response body - 2 :
         "photoUrl": "https://lh3.googleusercontent.com/a-/AOh14GiO_mUuTIe-4tQMFwCCNZ9y5ZIyL_cbmYRIRqpRxEM=s96-c",
         "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"phone": "9966885577","facultyId": "CSE999"
     },
-    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkgzS09yMHRxOFdjZzVjSzhISVk2QWVSUlpqNzMiLCJ1c2VyIjoiZmFjdWx0eSIsImlhdCI6MTU5OTQ4MDIzNX0.7xVp2KHGx5TPBzqRbofVdOcMmmJzqCC45vtSlGAN_uU"
+    "authorizeToken": <token>
 }
 
 
@@ -232,16 +237,17 @@ Method Type : [POST]
 request body - 1 :
 
 {
-	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjU1NGE3NTQ3Nzg1ODdjOTRjMTY3M2U4ZWEyNDQ2MTZjMGMwNDNjYmMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdpT19tVXVUSWUtNHRRTUZ3Q0NOWjl5NVpJeUxfY2JtWVJJUnFwUnhFTT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTYwMzE4MTMsInVzZXJfaWQiOiJIM0tPcjB0cThXY2c1Y0s4SElZNkFlUlJaajczIiwic3ViIjoiSDNLT3IwdHE4V2NnNWNLOEhJWTZBZVJSWmo3MyIsImlhdCI6MTU5NjAzMTgxMywiZXhwIjoxNTk2MDM1NDEzLCJlbWFpbCI6InNoYXJhbm5lZWRlZEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMTc5MzQzMzI2MDA2MjczMTM2MSJdLCJlbWFpbCI6WyJzaGFyYW5uZWVkZWRAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.SGIZ0qe89CDr5NcpH2S5iOKxB9dK1fRDzAf_ChFVA8Vlc4y_g1gEf5q0ckRJmYCDmTcYV1d-8-d7PAK4fXNxw4lxfc7ymUB8YkMWO_1t-XjHWCIvc_-yOf6a3hjF5D4DmyrAYgbJJ78LWgsOXOlQtU-CEWVCNE02c2jUi9T01oNmSvphjYyuE4TIbXZI64sfuSPkhsepo8ZZF1Oy9xwKwCK_gqqY0ThCs1qIl",
-	"email":"sharanneeded@gmail.com",
+	"token":<firebase-token>,
+    "email":"sharanneeded@gmail.com",
 	"usertype":101
 }
 
 request body - 2 :
 
 {
-	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEyODA5ZGQyMzlkMjRiZDM3OWMwYWQxOTFmOGIwZWRjZGI5ZDM5MTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIFIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1FUC1MYU9BRnBkQS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BTVp1dWNucWRnNmxZUGY3UC1DUml1U3lZXzhiM1NNcWVBL3M5Ni1jL3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTgwMDYzODYsInVzZXJfaWQiOiJFbGd6RGtHZmNOYlN3ek9GNnJwWlRRRHpUcW4xIiwic3ViIjoiRWxnekRrR2ZjTmJTd3pPRjZycFpUUUR6VHFuMSIsImlhdCI6MTU5ODAwNjM4NiwiZXhwIjoxNTk4MDA5OTg2LCJlbWFpbCI6InNoYXJhbnJkdWRlQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE0MTQ2NTA1NDgyNDY4Mjg4NjY1Il0sImVtYWlsIjpbInNoYXJhbnJkdWRlQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.N7CeUtd0e1P83VmS7bfYD-iDWykgcYJhqJG3MbY4oJ3HdkRVRCvrC09sdBgi6R2XolygzRPfMZ8gnWJ80do8lI9VdxxwcBzJrRrq3m6nQFfxOYPTVabVupCiC91bOC-ElK38twfe5sVqh8G8ZchFqvcqN7m1l33no9zfyCKJWFMlOKMC3pKizGLr7maT",
-	"usertype":202,"email":"sharanrdude@gmail.com"
+	"token":<firebase-token>,
+    "usertype":202,
+    "email":"sharanrdude@gmail.com"
 }
 
 
@@ -253,7 +259,7 @@ response body - 1 :
         "photoUrl": "https://lh3.googleusercontent.com/a-/AOh14GiO_mUuTIe-4tQMFwCCNZ9y5ZIyL_cbmYRIRqpRxEM=s96-c",
         "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"phone": "9966885577","facultyId": "CSE999"
     },
-    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkgzS09yMHRxOFdjZzVjSzhISVk2QWVSUlpqNzMiLCJ1c2VyIjoiZmFjdWx0eSIsImlhdCI6MTU5OTQ4MDQ0Nn0.J6G8Y43fZc4e_QcH2XLuMXT5eEPGJrOULRKXNBDlXhk"
+    "authorizeToken": <token>
 }
 
 response body - 2 :
@@ -264,20 +270,170 @@ response body - 2 :
         "photoUrl": "https://lh4.googleusercontent.com/-EP-LaOAFpdA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnqdg6lYPf7P-CRiuSyY_8b3SMqeA/s96-c/photo.jpg",
         "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"usn": "4MT17CS000","batch": 2017
     },
-    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVsZ3pEa0dmY05iU3d6T0Y2cnBaVFFEelRxbjEiLCJ1c2VyIjoic3R1ZGVudCIsImlhdCI6MTU5OTQ4MDU3OH0.P4q6Fqy3XEje6aR8zNRaTdfs2T2_cRFM9Uxw1ngS8Go"
+    "authorizeToken": <token>
 }
+
 
 
 User Logout API Section...
 
 Method Type : [PUT]
 
+
 request body : 
 {}
 
 Headers :
-
 Authorization : bearer <token>
+
 
 response body :
 {}
+
+
+
+Like API Section...
+
+Method Type : [PUT]
+
+
+request body : 
+{
+    "postId":<feed ID>
+}
+
+Headers :
+Authorization : bearer <token>
+
+
+response body :
+{
+    "likes": <count of likes>
+}
+
+
+
+Bookmark API Section...
+
+Method Type : [PUT]
+
+
+request body : 
+{
+    "postId" : <feed ID>
+}
+
+Headers :
+Authorization : bearer <token>
+
+
+response body :
+{}
+
+
+
+Post API Section...
+
+Method Type : [POST]
+
+
+request body : 
+{
+    "caption":"THIS IS A POST WITH NUMBER-1001",
+	"photoUrl":"https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+	"ownerName":"Sharan",
+	"ownerPhotoUrl":"https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
+	"scope":<```false``` or the ```scope value of the feed```>
+}
+
+Headers :
+Authorization : bearer <token>
+
+
+response body :
+{
+    "postId": "7aJf4bUYfIvJhWd0p9Za"
+}
+
+
+Deleting the feed API Section...
+
+Method Type : [POST]
+
+
+request body : 
+{
+    "postId": "7aJf4bUYfIvJhWd0p9Za"
+}
+
+Headers :
+Authorization : bearer <token>
+
+
+response body :
+{}
+
+
+
+
+Comment API Section...
+
+Method Type : [PUT]
+
+
+request body : 
+{
+    "postId":<feed ID>,
+	"data":"Super Post",
+	"name":"Sharan"
+}
+
+Headers :
+Authorization : bearer <token>
+
+
+response body :
+{
+    "comments": <number of comments>
+}
+
+
+Editing the Comment pf the feed API Section...
+
+Method Type : [PUT]
+
+
+request body : 
+{
+    "postId": "OcPGExXMHEUOGg4Jfj04",
+    "commentId":"HbSRgzVHGhrw6h4tjvOr",
+    "comment":"Edited Comment"
+}
+
+Headers :
+Authorization : bearer <token>
+
+
+response body :
+{}
+
+
+Deleting the Comment pf the feed API Section...
+
+Method Type : [PUT]
+
+
+request body : 
+{
+    "postId": "OcPGExXMHEUOGg4Jfj04",
+    "commentId":"HbSRgzVHGhrw6h4tjvOr"
+}
+
+Headers :
+Authorization : bearer <token>
+
+
+response body :
+{
+    "comments": 1
+}
