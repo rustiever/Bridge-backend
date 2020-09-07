@@ -3,9 +3,6 @@ Register User Feeds API :
 Method Type - [POST]
 
 
-
-
-
 request body - 1 :
 
 {
@@ -17,404 +14,132 @@ request body - 1 :
         }
 }
 
-
 request body - 2 :
+
 {   "time" :{"seconds": 1598708945,"nanoseconds": 25000000},
-	"userScope":{"branch": "Computer science and Engineering","batch": 2017,"groups": ["abcd","vv"]}
+	"userScope":{
+        "branch": "Computer science and Engineering",
+        "batch": 2017,
+        "groups": ["abcd","vv"]
+    }
 }
 
 
 response body - 1:
 
 {
-    "lastTime": {"seconds": 1598710757,"nanoseconds": 441000000},
-    "feedData": [
-        {
-            "postId": "9Ncg5Hf0rqsXcHeKQOPA",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1005",
-            "scope": {"groups": ["abcd"],"branch": false,"batch": false},
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+    "lastTime": {"seconds": 1598710757,"nanoseconds": 441000000},"feedData": [{
+            "postId": "9Ncg5Hf0rqsXcHeKQOPA","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1005","scope": {"groups": ["abcd"],"branch": false,"batch": false},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
             "timeStamp": {"seconds": 1598710819,"nanoseconds": 971000000}
-        },
-        {
-            "postId": "rwfi7MoOGRz0UHpOy2lz",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1004",
-            "scope": {"groups": false,"batch": true,"branch": ["CS"]},
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+        },{
+            "postId": "rwfi7MoOGRz0UHpOy2lz","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1004","scope": {"groups": false,"batch": true,"branch": ["CS"]},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710797,
-                "nanoseconds": 497000000
-            }
-        },
-        {
-            "postId": "lIZv6t8Lpaxj9491SeUH",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1002",
-            "scope": {
-                "groups": false,
-                "batch": [
-                    2017
-                ],
-                "branch": [
-                    "CS"
-                ]
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710797,"nanoseconds": 497000000}
+        },{
+            "postId": "lIZv6t8Lpaxj9491SeUH","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1002","scope": {"groups": false,"batch": [2017],"branch": ["CS"]},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710775,
-                "nanoseconds": 850000000
-            }
-        },
-        {
-            "postId": "A7aIqVNQqAOrcab7pjGL",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1002",
-            "scope": {
-                "groups": false,
-                "branch": true,
-                "batch": [
-                    2017
-                ]
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710775,"nanoseconds": 850000000}
+        },{
+            "postId": "A7aIqVNQqAOrcab7pjGL","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1002","scope": {"groups": false,"branch": true,"batch": [2017]},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710768,
-                "nanoseconds": 76000000
-            }
-        },
-        {
-            "postId": "gE5HvVpQEoK1TuNwDdCV",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1002",
-            "scope": {
-                "groups": false,
-                "branch": true,
-                "batch": true
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710768,"nanoseconds": 76000000}
+        },{
+            "postId": "gE5HvVpQEoK1TuNwDdCV","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1002","scope": {"groups": false,"branch": true,"batch": true},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710757,
-                "nanoseconds": 441000000
-            }
-        },
-        {
-            "postId": "oIQctj0d046DNqVMmTrn",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1001",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710757,"nanoseconds": 441000000}
+        },{
+            "postId": "oIQctj0d046DNqVMmTrn","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1001","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710717,
-                "nanoseconds": 216000000
-            }
-        },
-        {
-            "postId": "vHiSGRH7xLobHRWoNJGQ",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-100",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710717,"nanoseconds": 216000000}
+        },{
+            "postId": "vHiSGRH7xLobHRWoNJGQ","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-100","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709534,
-                "nanoseconds": 3000000
-            }
-        },
-        {
-            "postId": "ux6kLXTqwLsQg8WaMVFg",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-99",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598709534,"nanoseconds": 3000000}
+        },{
+            "postId": "ux6kLXTqwLsQg8WaMVFg","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-99","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709528,
-                "nanoseconds": 528000000
-            }
-        },
-        {
-            "postId": "pkqQNxrgwRPvuvFWXx8E",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-98",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598709528,"nanoseconds": 528000000}
+        },{
+            "postId": "pkqQNxrgwRPvuvFWXx8E","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-98","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709523,
-                "nanoseconds": 963000000
-            }
-        },
-        {
-            "postId": "0ER40iQgXexOXZ89fnZ4",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-97",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598709523,"nanoseconds": 963000000}
+        },{
+            "postId": "0ER40iQgXexOXZ89fnZ4","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-97","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709519,
-                "nanoseconds": 330000000
-            }
-        }
-    ]
+            "timeStamp": {"seconds": 1598709519,"nanoseconds": 330000000}
+        }]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 response body - 2 :
+
 {
-    "lastTime": {
-        "seconds": 1598708058,
-        "nanoseconds": 537000000
-    },
-    "feedData": [
-        {
-            "postId": "9Ncg5Hf0rqsXcHeKQOPA",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1005",
-            "scope": {
-                "groups": [
-                    "abcd"
-                ],
-                "branch": false,
-                "batch": false
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+    "lastTime": {"seconds": 1598708058,"nanoseconds": 537000000},"feedData": [{
+            "postId": "9Ncg5Hf0rqsXcHeKQOPA","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1005","scope": {"groups": ["abcd"],"branch": false,"batch": false},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710819,
-                "nanoseconds": 971000000
-            }
-        },
-        {
-            "postId": "rwfi7MoOGRz0UHpOy2lz",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1004",
-            "scope": {
-                "groups": false,
-                "batch": true,
-                "branch": [
-                    "CS"
-                ]
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710819,"nanoseconds": 971000000}
+        },{
+            "postId": "rwfi7MoOGRz0UHpOy2lz","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1004","scope": {"groups": false,"batch": true,"branch": ["CS"]},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710797,
-                "nanoseconds": 497000000
-            }
-        },
-        {
-            "postId": "lIZv6t8Lpaxj9491SeUH",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1002",
-            "scope": {
-                "groups": false,
-                "batch": [
-                    2017
-                ],
-                "branch": [
-                    "CS"
-                ]
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710797,"nanoseconds": 497000000}
+        },{
+            "postId": "lIZv6t8Lpaxj9491SeUH","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1002","scope": {"groups": false,"batch": [2017],"branch": ["CS"]},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710775,
-                "nanoseconds": 850000000
-            }
-        },
-        {
-            "postId": "A7aIqVNQqAOrcab7pjGL",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1002",
-            "scope": {
-                "groups": false,
-                "branch": true,
-                "batch": [
-                    2017
-                ]
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710775,"nanoseconds": 850000000}
+        },{
+            "postId": "A7aIqVNQqAOrcab7pjGL","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1002","scope": {"groups": false,"branch": true,"batch": [2017]},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710768,
-                "nanoseconds": 76000000
-            }
-        },
-        {
-            "postId": "gE5HvVpQEoK1TuNwDdCV",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1002",
-            "scope": {
-                "groups": false,
-                "branch": true,
-                "batch": true
-            },
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710768,"nanoseconds": 76000000}
+        },{
+            "postId": "gE5HvVpQEoK1TuNwDdCV","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1002","scope": {"groups": false,"branch": true,"batch": true},
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710757,
-                "nanoseconds": 441000000
-            }
-        },
-        {
-            "postId": "oIQctj0d046DNqVMmTrn",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-1001",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710757,"nanoseconds": 441000000}
+        },{
+            "postId": "oIQctj0d046DNqVMmTrn","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-1001","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598710717,
-                "nanoseconds": 216000000
-            }
-        },
-        {
-            "postId": "vHiSGRH7xLobHRWoNJGQ",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-100",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598710717,"nanoseconds": 216000000}
+        },{
+            "postId": "vHiSGRH7xLobHRWoNJGQ","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-100","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709534,
-                "nanoseconds": 3000000
-            }
-        },
-        {
-            "postId": "ux6kLXTqwLsQg8WaMVFg",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-99",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598709534,"nanoseconds": 3000000}
+        },{
+            "postId": "ux6kLXTqwLsQg8WaMVFg","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-99","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709528,
-                "nanoseconds": 528000000
-            }
-        },
-        {
-            "postId": "pkqQNxrgwRPvuvFWXx8E",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-98",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598709528,"nanoseconds": 528000000}
+        },{
+            "postId": "pkqQNxrgwRPvuvFWXx8E","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-98","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709523,
-                "nanoseconds": 963000000
-            }
-        },
-        {
-            "postId": "0ER40iQgXexOXZ89fnZ4",
-            "likes": 0,
-            "comments": 0,
-            "caption": "THIS IS A POST WITH NUMBER-97",
-            "scope": false,
-            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            "usertype": "faculty",
-            "ownerName": "Sharan",
+            "timeStamp": {"seconds": 1598709523,"nanoseconds": 963000000}
+        },{
+            "postId": "0ER40iQgXexOXZ89fnZ4","likes": 0,"comments": 0,"caption": "THIS IS A POST WITH NUMBER-97","scope": false,
+            "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","usertype": "faculty","ownerName": "Sharan",
             "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-            "timeStamp": {
-                "seconds": 1598709519,
-                "nanoseconds": 330000000
-            }
-        }
-    ]
+            "timeStamp": {"seconds": 1598709519,"nanoseconds": 330000000}}]
 }
-
-
-
-
-
-
-
 
 
 Anonymous User Feeds Section...
 
-Method : [POST]
-
-
+Method Type : [POST]
 
 
 request body - 1 :
@@ -423,104 +148,136 @@ request body - 1 :
 	"time" :null
 }
 
-
-
-
-
 request body - 2 :
 
 {
-	"time" :{
-                "seconds": 1598604640,
-                "nanoseconds": 262000000
-            }
+	"time":{"seconds": 1598800188,"nanoseconds": 941000000}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 response body - 1 :
 
 {
-    "lastTime": {
-        "seconds": 1598709528,
-        "nanoseconds": 528000000
-    },
-    "feedData": {
-        "feedData": [
-            {
-                "postId": "vHiSGRH7xLobHRWoNJGQ",
-                "caption": "THIS IS A POST WITH NUMBER-100",
-                "likes": 0,
-                "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-                "ownerName": "Sharan",
-                "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-                "ownerUid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73",
-                "timeStamp": {
-                    "seconds": 1598709534,
-                    "nanoseconds": 3000000
-                },
-                "scope": false,
-                "comments": 0
-            },
-            {
-                "postId": "ux6kLXTqwLsQg8WaMVFg",
-                "caption": "THIS IS A POST WITH NUMBER-99",
-                "likes": 0,
-                "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-                "ownerName": "Sharan",
-                "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-                "ownerUid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73",
-                "timeStamp": {
-                    "seconds": 1598709528,
-                    "nanoseconds": 528000000
-                },
-                "scope": false,
-                "comments": 0
-            }
-        ]
-    }
+    "lastTime": {"seconds": 1598800188,"nanoseconds": 941000000},"feedData": [{
+            "postId": "MDVmVt1YPOzrvxrRfg8v","caption": "THIS IS A POST WITH NUMBER-20","likes": 1,"ownerUid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73","photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","ownerName": "Sharan",
+            "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
+            "timeStamp": {"seconds": 1598800417,"nanoseconds": 438000000},"scope": false,"comments": 0
+        },{
+            "postId": "vrZq7qU8LyecdjKeDy0F","caption": "THIS IS A POST WITH NUMBER-11","likes": 0,"photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","ownerName": "Sharan",
+            "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
+            "ownerUid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73","timeStamp": {"seconds": 1598800188,"nanoseconds": 941000000},"scope": false,"comments": 0
+        }]
 }
-
-
-
-
-
-
-
 
 response body - 2 :
 
 {
-    "lastTime": null,
-    "feedData": {
-        "feedData": [
-            {
-                "postId": "n8wUfwuJEkjCoDT7B3mp",
-                "caption": "THIS IS A POST WITH NUMBER-152563",
-                "likes": 1,
-                "photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-                "ownerName": "Sharan",
-                "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
-                "ownerUid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73",
-                "timeStamp": {
-                    "seconds": 1598510985,
-                    "nanoseconds": 823000000
-                },
-                "scope": false,
-                "comments": 54
-            }
-        ]
-    }
+    "lastTime": null,"feedData": [{
+            "postId": "MDVmVt1YPOzrvxrRfg8m","caption": "THIS IS A POST WITH NUMBER-2001","likes": 1,"ownerUid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73","photoUrl": "https://images.unsplash.com/photo-1573331519317-30b24326bb9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80","ownerName": "Sharan",
+            "ownerPhotoUrl": "https://firebasestorage.googleapis.com/v0/b/bridge-fd58f.appspot.com/o/DummyPost%2FWIN_20191024_15_45_00_Pro.jpg?alt=media&token=9d061db8-c7db-4dbd-85ea-48faaddb93d4",
+            "timeStamp": {"seconds": 1598800187,"nanoseconds": 438000000},"scope": false,"comments": 0
+        }]
 }
+
+
+User Register Section...
+
+Method Type : [POST]
+
+
+request body - 1 :
+
+{
+	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEyODA5ZGQyMzlkMjRiZDM3OWMwYWQxOTFmOGIwZWRjZGI5ZDM5MTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIFIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1FUC1MYU9BRnBkQS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BTVp1dWNucWRnNmxZUGY3UC1DUml1U3lZXzhiM1NNcWVBL3M5Ni1jL3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTgwMDYzODYsInVzZXJfaWQiOiJFbGd6RGtHZmNOYlN3ek9GNnJwWlRRRHpUcW4xIiwic3ViIjoiRWxnekRrR2ZjTmJTd3pPRjZycFpUUUR6VHFuMSIsImlhdCI6MTU5ODAwNjM4NiwiZXhwIjoxNTk4MDA5OTg2LCJlbWFpbCI6InNoYXJhbnJkdWRlQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE0MTQ2NTA1NDgyNDY4Mjg4NjY1Il0sImVtYWlsIjpbInNoYXJhbnJkdWRlQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.N7CeUtd0e1P83VmS7bfYD-iDWykgcYJhqJG3MbY4oJ3HdkRVRCvrC09sdBgi6R2XolygzRPfMZ8gnWJ80do8lI9VdxxwcBzJrRrq3m6nQFfxOYPTVabVupCiC91bOC-ElK38twfe5sVqh8G8ZchFqvcqN7m1l33no9zfyCKJWFMlOKMC3pKizGLr7maT",
+	"usertype":202,"email":"sharanrdude@gmail.com"
+}
+
+request body - 2 :
+
+{
+	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjU1NGE3NTQ3Nzg1ODdjOTRjMTY3M2U4ZWEyNDQ2MTZjMGMwNDNjYmMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdpT19tVXVUSWUtNHRRTUZ3Q0NOWjl5NVpJeUxfY2JtWVJJUnFwUnhFTT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTYwMzE4MTMsInVzZXJfaWQiOiJIM0tPcjB0cThXY2c1Y0s4SElZNkFlUlJaajczIiwic3ViIjoiSDNLT3IwdHE4V2NnNWNLOEhJWTZBZVJSWmo3MyIsImlhdCI6MTU5NjAzMTgxMywiZXhwIjoxNTk2MDM1NDEzLCJlbWFpbCI6InNoYXJhbm5lZWRlZEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMTc5MzQzMzI2MDA2MjczMTM2MSJdLCJlbWFpbCI6WyJzaGFyYW5uZWVkZWRAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.SGIZ0qe89CDr5NcpH2S5iOKxB9dK1fRDzAf_ChFVA8Vlc4y_g1gEf5q0ckRJmYCDmTcYV1d-8-d7PAK4fXNxw4lxfc7ymUB8YkMWO_1t-XjHWCIvc_-yOf6a3hjF5D4DmyrAYgbJJ78LWgsOXOlQtU-CEWVCNE02c2jUi9T01oNmSvphjYyuE4TIbXZI64sfuSPkhsepo8ZZF1Oy9xwKwCK_gqqY0ThCs1qIl",
+	"email":"sharanneeded@gmail.com","usertype":101
+}
+
+
+response body - 1 :
+
+{
+    "userData": {
+        "uid": "ElgzDkGfcNbSwzOF6rpZTQDzTqn1","name": "sharan R","email": "sharanrdude@gmail.com",
+        "photoUrl": "https://lh4.googleusercontent.com/-EP-LaOAFpdA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnqdg6lYPf7P-CRiuSyY_8b3SMqeA/s96-c/photo.jpg",
+        "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"usn": "4MT17CS000","batch": 2017
+    },
+    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVsZ3pEa0dmY05iU3d6T0Y2cnBaVFFEelRxbjEiLCJ1c2VyIjoic3R1ZGVudCIsImlhdCI6MTU5OTQ3OTkzNH0.Oxgt2k3g2fD3i6o3rDd-smfBG6F3JEK1i9V0DaicOng"
+}
+
+response body - 2 :
+
+{
+    "userData": {
+        "uid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73","name": "Sharan","email": "sharanneeded@gmail.com",
+        "photoUrl": "https://lh3.googleusercontent.com/a-/AOh14GiO_mUuTIe-4tQMFwCCNZ9y5ZIyL_cbmYRIRqpRxEM=s96-c",
+        "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"phone": "9966885577","facultyId": "CSE999"
+    },
+    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkgzS09yMHRxOFdjZzVjSzhISVk2QWVSUlpqNzMiLCJ1c2VyIjoiZmFjdWx0eSIsImlhdCI6MTU5OTQ4MDIzNX0.7xVp2KHGx5TPBzqRbofVdOcMmmJzqCC45vtSlGAN_uU"
+}
+
+
+
+User Login Section...
+
+Method Type : [POST]
+
+
+request body - 1 :
+
+{
+	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjU1NGE3NTQ3Nzg1ODdjOTRjMTY3M2U4ZWEyNDQ2MTZjMGMwNDNjYmMiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hLS9BT2gxNEdpT19tVXVUSWUtNHRRTUZ3Q0NOWjl5NVpJeUxfY2JtWVJJUnFwUnhFTT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTYwMzE4MTMsInVzZXJfaWQiOiJIM0tPcjB0cThXY2c1Y0s4SElZNkFlUlJaajczIiwic3ViIjoiSDNLT3IwdHE4V2NnNWNLOEhJWTZBZVJSWmo3MyIsImlhdCI6MTU5NjAzMTgxMywiZXhwIjoxNTk2MDM1NDEzLCJlbWFpbCI6InNoYXJhbm5lZWRlZEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMTc5MzQzMzI2MDA2MjczMTM2MSJdLCJlbWFpbCI6WyJzaGFyYW5uZWVkZWRAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.SGIZ0qe89CDr5NcpH2S5iOKxB9dK1fRDzAf_ChFVA8Vlc4y_g1gEf5q0ckRJmYCDmTcYV1d-8-d7PAK4fXNxw4lxfc7ymUB8YkMWO_1t-XjHWCIvc_-yOf6a3hjF5D4DmyrAYgbJJ78LWgsOXOlQtU-CEWVCNE02c2jUi9T01oNmSvphjYyuE4TIbXZI64sfuSPkhsepo8ZZF1Oy9xwKwCK_gqqY0ThCs1qIl",
+	"email":"sharanneeded@gmail.com",
+	"usertype":101
+}
+
+request body - 2 :
+
+{
+	"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjEyODA5ZGQyMzlkMjRiZDM3OWMwYWQxOTFmOGIwZWRjZGI5ZDM5MTQiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiU2hhcmFuIFIiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1FUC1MYU9BRnBkQS9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BTVp1dWNucWRnNmxZUGY3UC1DUml1U3lZXzhiM1NNcWVBL3M5Ni1jL3Bob3RvLmpwZyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9icmlkZ2UtZmQ1OGYiLCJhdWQiOiJicmlkZ2UtZmQ1OGYiLCJhdXRoX3RpbWUiOjE1OTgwMDYzODYsInVzZXJfaWQiOiJFbGd6RGtHZmNOYlN3ek9GNnJwWlRRRHpUcW4xIiwic3ViIjoiRWxnekRrR2ZjTmJTd3pPRjZycFpUUUR6VHFuMSIsImlhdCI6MTU5ODAwNjM4NiwiZXhwIjoxNTk4MDA5OTg2LCJlbWFpbCI6InNoYXJhbnJkdWRlQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7Imdvb2dsZS5jb20iOlsiMTE0MTQ2NTA1NDgyNDY4Mjg4NjY1Il0sImVtYWlsIjpbInNoYXJhbnJkdWRlQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6Imdvb2dsZS5jb20ifX0.N7CeUtd0e1P83VmS7bfYD-iDWykgcYJhqJG3MbY4oJ3HdkRVRCvrC09sdBgi6R2XolygzRPfMZ8gnWJ80do8lI9VdxxwcBzJrRrq3m6nQFfxOYPTVabVupCiC91bOC-ElK38twfe5sVqh8G8ZchFqvcqN7m1l33no9zfyCKJWFMlOKMC3pKizGLr7maT",
+	"usertype":202,"email":"sharanrdude@gmail.com"
+}
+
+
+response body - 1 :
+
+{
+    "userData": {
+        "uid": "H3KOr0tq8Wcg5cK8HIY6AeRRZj73","name": "Sharan","email": "sharanneeded@gmail.com",
+        "photoUrl": "https://lh3.googleusercontent.com/a-/AOh14GiO_mUuTIe-4tQMFwCCNZ9y5ZIyL_cbmYRIRqpRxEM=s96-c",
+        "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"phone": "9966885577","facultyId": "CSE999"
+    },
+    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkgzS09yMHRxOFdjZzVjSzhISVk2QWVSUlpqNzMiLCJ1c2VyIjoiZmFjdWx0eSIsImlhdCI6MTU5OTQ4MDQ0Nn0.J6G8Y43fZc4e_QcH2XLuMXT5eEPGJrOULRKXNBDlXhk"
+}
+
+response body - 2 :
+
+{
+    "userData": {
+        "uid": "ElgzDkGfcNbSwzOF6rpZTQDzTqn1","name": "sharan R","email": "sharanrdude@gmail.com",
+        "photoUrl": "https://lh4.googleusercontent.com/-EP-LaOAFpdA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnqdg6lYPf7P-CRiuSyY_8b3SMqeA/s96-c/photo.jpg",
+        "branch": "COMPUTER SCIENCE AND ENGINEERING","groups": [],"usn": "4MT17CS000","batch": 2017
+    },
+    "authorizeToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVsZ3pEa0dmY05iU3d6T0Y2cnBaVFFEelRxbjEiLCJ1c2VyIjoic3R1ZGVudCIsImlhdCI6MTU5OTQ4MDU3OH0.P4q6Fqy3XEje6aR8zNRaTdfs2T2_cRFM9Uxw1ngS8Go"
+}
+
+
+User Logout API Section...
+
+Method Type : [PUT]
+
+request body : 
+{}
+
+Headers :
+
+Authorization : bearer <token>
+
+response body :
+{}
