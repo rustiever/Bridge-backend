@@ -30,7 +30,7 @@ postRouter.post('/', middleware.checkToken, middleware.authorizeToken, async (re
 
         await db.collection('users').doc(req.uid).update({ posts: firebase.firestore.FieldValue.arrayUnion(docRef.id) });
 
-        return res.status(200).json({ postId: docRef.id });
+        return res.status(201).json({ postId: docRef.id });
     }
     catch (err) {
         return res.send(err.toString());
