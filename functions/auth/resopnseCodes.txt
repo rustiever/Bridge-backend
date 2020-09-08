@@ -1,5 +1,6 @@
 Response Codes : 
 
+
 200 - OK
 201 - CREATED
 202 - ACCEPTED
@@ -18,7 +19,7 @@ API Response Codes :
 
 Sucess Codes :
 
-1) Register API         =       201
+1)Register API         =       201
 2)Login API             =       200
 3)Logout API            =       200
 4)Like API              =       200
@@ -30,17 +31,19 @@ Sucess Codes :
 10)Edit Comment API     =       200
 11)Delete Comment       =       200
 12)Profile API          =       200
+13)Doing the Post       =       201
 
 Unsucess codes:
 
-1) Register API         =       400
+1)Register API         =       400
 2)Login API             =       401, 400
 3)Logout API            =       401, 404
 4)Like API              =       401, 404
 5)Comment API           =       401, 404
-6)getComments API       =       202, 404
+6)getComments API       =       401, 404
 7)Bookmark API          =       401, 404
 8)Profile API           =       401, 404
-9)Edit Comment API     =        401,401
+9)Edit Comment API      =       401, 404
 10)Delete Comment       =       401, 404, 400
 11)Profile API          =       401, 404
+12)Doing the Post       =       401, 404
