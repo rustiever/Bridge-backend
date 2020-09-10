@@ -13,8 +13,8 @@ After deploy we can use the cloud functions to run.
 
 ## Usage
 
-- yet to build
-
+- It is merged with front-end to make some work to be done.
+- Its a project consisits of APIs ; and via the front-end (client-side)application we can access the database bye-passing these APIs.
 
 ## Roadmap
 - instagram interface
