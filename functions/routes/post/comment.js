@@ -32,7 +32,7 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
             comlen: c
         });
 
-        return res.status(200).send({ comments: c });
+        return res.status(201).send({ comments: c });
     } catch (err) {
         return res.send(err.toString());
     }
