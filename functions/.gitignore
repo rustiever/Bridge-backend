@@ -4,3 +4,4 @@ node_modules/
 auth/config.js
 
 .DS_Store
+./package-lock.json
