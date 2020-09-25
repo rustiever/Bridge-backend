@@ -2,6 +2,7 @@ node_modules/
 
 #firebase service file, should keep private
 auth/config.js
+auth/spreadsheet.json
 
 .DS_Store
 
