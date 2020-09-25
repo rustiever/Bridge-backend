@@ -6,7 +6,7 @@ const middleware = require('../../auth/authorization');
 
 commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.authorizeToken, async (req, res) => {
     try {
-        if (!req.body.name || !req.body.comment) {
+        if (!req.body.name || !req.body.comment || !req.body.photoUrl) {
             let err = new Error('Invalid Body');
             return res.status(400).send(err.toString());
         }
@@ -23,6 +23,7 @@ commentRouter.put('/', middleware.checkPost, middleware.checkToken, middleware.a
             userId: req.uid,
             comment: req.body.comment,
             username: req.body.name,
+            userPhotoUrl : req.body.photoUrl,
             userType: req.usertype,
             time: firebase.firestore.Timestamp.now(),
             edited: false

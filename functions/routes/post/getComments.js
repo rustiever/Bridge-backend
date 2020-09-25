@@ -44,10 +44,11 @@ getCommentRouter.post('/', middleware.checkPost, middleware.checkToken, middlewa
 
             obj.id = element.id;
             obj.time = data.time;
-            obj.data = data.data;
+            obj.comment = data.comment;
             obj.usertype = data.usertype;
             obj.userId = data.UserId;
             obj.edited = data.edited;
+            obj.photoUrl = data.userPhotoUrl;
 
             if (data.userId === req.uid) obj.name = 'You';
             else obj.name = data.username;
